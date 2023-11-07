@@ -1,9 +1,11 @@
+using CompanyGear.Core.ValueObjects;
+
 namespace CompanyGear.Core.Entities;
 
 public class Employee
 {
     public Guid Id { get;  }
-    public string FirstName { get; }
+    public FirstName FirstName { get; }
     public string LastName { get; } 
     public int EmployeeNumber { get; }
     public string Department { get;  }
@@ -23,7 +25,7 @@ public class Employee
         
     }
 
-    public static Employee Create(Guid id, string firstName, string lastName, int employeeNumber, string department)
+    public static Employee Create(FirstName firstName, string lastName, int employeeNumber, string department)
     {
         return new Employee(Guid.NewGuid(), firstName, lastName, employeeNumber, department);
     }
