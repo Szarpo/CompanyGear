@@ -6,9 +6,9 @@ public class Employee
 {
     public Guid Id { get;  }
     public FirstName FirstName { get; }
-    public string LastName { get; } 
-    public int EmployeeNumber { get; }
-    public string Department { get;  }
+    public LastName LastName { get; } 
+    public EmployeeNumber EmployeeNumber { get; }
+    public Department Department { get;  }
     
 
     private Employee(Guid id, string firstName, string lastName, int employeeNumber, string department)
@@ -25,7 +25,7 @@ public class Employee
         
     }
 
-    public static Employee Create(FirstName firstName, string lastName, int employeeNumber, string department)
+    public static Employee Create(FirstName firstName, LastName lastName, EmployeeNumber employeeNumber, Department department)
     {
         return new Employee(Guid.NewGuid(), firstName, lastName, employeeNumber, department);
     }
