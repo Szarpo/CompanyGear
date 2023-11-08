@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyGear.Application", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyGear.Core", "src\CompanyGear.Core\CompanyGear.Core.csproj", "{358F5F30-65AE-4A3D-82E1-AF5BD0967733}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyGear.Infrastructure", "src\CompanyGear.Infrastructure\CompanyGear.Infrastructure.csproj", "{F570B69F-2670-469B-A04B-84E225056517}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{358F5F30-65AE-4A3D-82E1-AF5BD0967733}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{358F5F30-65AE-4A3D-82E1-AF5BD0967733}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{358F5F30-65AE-4A3D-82E1-AF5BD0967733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F570B69F-2670-469B-A04B-84E225056517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F570B69F-2670-469B-A04B-84E225056517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F570B69F-2670-469B-A04B-84E225056517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F570B69F-2670-469B-A04B-84E225056517}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
