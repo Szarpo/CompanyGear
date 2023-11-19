@@ -13,11 +13,13 @@ public class EmployeeController : ControllerBase
 {
     private readonly ICommandHandler<CreateEmployeeCommand> _createEmployee;
     private readonly IQueryHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>> _getEmployees;
+    private readonly IQueryHandler<GetEmployeeByIdQuery, EmployeeDto> _getEmployeeById;
 
-    public EmployeeController(ICommandHandler<CreateEmployeeCommand> createEmployee, IQueryHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>> getEmployees)
+    public EmployeeController(ICommandHandler<CreateEmployeeCommand> createEmployee, IQueryHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>> getEmployees, IQueryHandler<GetEmployeeByIdQuery, EmployeeDto> getEmployeeById)
     {
         _createEmployee = createEmployee;
         _getEmployees = getEmployees;
+        _getEmployeeById = getEmployeeById;
     }
     
     [HttpPost("/create")]
@@ -29,9 +31,15 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet("/getAllEmployees")]
-    public async Task<ActionResult> GetEmployees([FromQuery] GetEmployeesQuery query)
+    public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployees([FromQuery] GetEmployeesQuery query)
     {
       
         return Ok( await _getEmployees.HandleASync(query));
+    }
+
+    [HttpGet("/getEmployeeById/{employeeId:guid}")]
+    public async Task<ActionResult<EmployeeDto>> GetEmployeeById(Guid employeeId)
+    {
+        return Ok( await _getEmployeeById.HandleASync(new GetEmployeeByIdQuery {EmployeeId = employeeId}));
     }
 }
