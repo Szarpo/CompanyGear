@@ -12,14 +12,17 @@ namespace CompanyGear.Api.Controllers;
 public class EmployeeController : ControllerBase
 {
     private readonly ICommandHandler<CreateEmployeeCommand> _createEmployee;
+    private readonly ICommandHandler<UpdateEmployeeCommand> _updateEmployee;
     private readonly IQueryHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>> _getEmployees;
     private readonly IQueryHandler<GetEmployeeByIdQuery, EmployeeDto> _getEmployeeById;
 
-    public EmployeeController(ICommandHandler<CreateEmployeeCommand> createEmployee, IQueryHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>> getEmployees, IQueryHandler<GetEmployeeByIdQuery, EmployeeDto> getEmployeeById)
+    public EmployeeController(ICommandHandler<CreateEmployeeCommand> createEmployee, IQueryHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>> getEmployees, IQueryHandler<GetEmployeeByIdQuery, EmployeeDto> getEmployeeById,
+     ICommandHandler<UpdateEmployeeCommand> updateEmployee)
     {
         _createEmployee = createEmployee;
         _getEmployees = getEmployees;
         _getEmployeeById = getEmployeeById;
+        _updateEmployee = updateEmployee;
     }
     
     [HttpPost("/create")]
@@ -41,5 +44,12 @@ public class EmployeeController : ControllerBase
     public async Task<ActionResult<EmployeeDto>> GetEmployeeById(Guid employeeId)
     {
         return Ok( await _getEmployeeById.HandleASync(new GetEmployeeByIdQuery {EmployeeId = employeeId}));
+    }
+
+    [HttpPut()]
+    public async Task<ActionResult> UpdateEmployee([FromBody] UpdateEmployeeCommand command)
+    {
+        await _updateEmployee.HandleAsync(command);
+        return NoContent();
     }
 }
