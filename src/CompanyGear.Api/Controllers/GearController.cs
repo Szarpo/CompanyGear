@@ -20,6 +20,7 @@ public class GearController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> Create(CreateGearCommand command)
     {
+        await _createGear.HandleAsync(command);
         return NoContent();
     }
 
