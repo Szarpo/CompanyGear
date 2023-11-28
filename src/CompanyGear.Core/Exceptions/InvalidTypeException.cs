@@ -1,8 +1,11 @@
 namespace CompanyGear.Core.Exceptions;
 
-public class InvalidTypeExeption : CustomException
+public class InvalidTypeException : CustomException
 {
-    public InvalidTypeExeption(string message) : base(message)
+    public string Type { get; }
+    
+    public InvalidTypeException(string type) : base($"Type: {type} is invalid.")
     {
+        Type = type;
     }
 }

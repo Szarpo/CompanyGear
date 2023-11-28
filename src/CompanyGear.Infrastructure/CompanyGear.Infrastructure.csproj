@@ -1,18 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+        <Nullable>disable</Nullable>
+  </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\CompanyGear.Application\CompanyGear.Application.csproj" />
       <ProjectReference Include="..\CompanyGear.Core\CompanyGear.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0-rc.2.23479.6" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0-rc.2.23479.6" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0-rc.2.23479.6" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
     </ItemGroup>
 
