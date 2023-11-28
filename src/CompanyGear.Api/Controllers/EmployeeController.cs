@@ -40,7 +40,6 @@ public class EmployeeController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployees([FromQuery] GetEmployeesQuery query)
     {
-      
         return Ok( await _getEmployees.HandleASync(query));
     }
 
@@ -60,7 +59,7 @@ public class EmployeeController : ControllerBase
     [HttpDelete]
     public async Task<ActionResult> DeleteEmployee([FromHeader] Guid employeeId)
     {
-        DeleteEmployeeCommand command = new DeleteEmployeeCommand(employeeId) { EmployeeId = employeeId };
+        var command = new DeleteEmployeeCommand(EmployeeId: employeeId);
         await _deleteEmployee.HandleAsync(command);
         return NoContent();
     }

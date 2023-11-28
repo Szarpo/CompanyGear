@@ -1,16 +1,19 @@
+using CompanyGear.Core.ValueObjects;
+using Type = CompanyGear.Core.ValueObjects.Type;
+
 namespace CompanyGear.Core.Entities;
 
 public class Gear
 {
-    public Guid Id { get; }
-    public string Type { get; }
-    public string Model { get; }
-    public string SerialNumber { get; }
-    public string UteNumber { get; }
+    public Guid GearId { get; }
+    public Type Type { get; }
+    public Model Model { get; }
+    public SerialNumber SerialNumber { get; }
+    public UteNumber UteNumber { get; }
 
     private Gear(Guid id, string type, string model, string serialNumber, string uteNumber)
     {
-        Id = id;
+        GearId = id;
         Type = type;
         Model = model;
         SerialNumber = serialNumber;
@@ -22,7 +25,7 @@ public class Gear
         
     }
 
-    public static Gear Create(Guid id, string type, string model, string serialNumber, string uteNumber)
+    public static Gear Create(string type, string model, string serialNumber, string uteNumber)
     {
         return new Gear(Guid.NewGuid(), type, model, serialNumber, uteNumber);
     }

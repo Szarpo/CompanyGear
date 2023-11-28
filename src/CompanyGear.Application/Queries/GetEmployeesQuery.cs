@@ -1,6 +1,9 @@
+using CompanyGear.Application.Abstractions;
+using CompanyGear.Application.DTO;
+
 namespace CompanyGear.Application.Queries;
 
-public class GetEmployees
+public class GetEmployeesQuery : IQuery<IEnumerable<EmployeeDto>>
 {
     
 }

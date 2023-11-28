@@ -1,6 +1,6 @@
-namespace CompanyGear.Application.Commands.Handlers;
+using CompanyGear.Application.Abstractions;
 
-public class UpdateEmployeeCommand
-{
-    
-}
+namespace CompanyGear.Application.Commands;
+
+public sealed record UpdateEmployeeCommand(Guid Id, string FirstName, string LastName, string EmployeeNumber, string Department) : ICommand;
+

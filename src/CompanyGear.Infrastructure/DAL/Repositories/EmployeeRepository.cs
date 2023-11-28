@@ -1,18 +1,48 @@
+using System.Reflection.Metadata;
+using CompanyGear.Application.DTO;
 using CompanyGear.Core.Entities;
 using CompanyGear.Core.Repositories;
+using CompanyGear.Infrastructure.DAL.Handlers;
+using Microsoft.EntityFrameworkCore;
 
 namespace CompanyGear.Infrastructure.DAL.Repositories;
 
-public class EmployeeRepository : IEmployeeRepository
+internal sealed class EmployeeRepository : IEmployeeRepository
 {
 
+    private readonly CompanyGearDbContext _dbContext;
+    private readonly DbSet<Employee> _employees;
+
+    public EmployeeRepository(CompanyGearDbContext dbContext)
+    {
+        _dbContext = dbContext;
+        _employees = _dbContext.Employees;
+    }
 
     public EmployeeRepository()
     {
     }
     
-    public Task Add(Employee employee)
+    public async Task Add(Employee employee)
     {
-        throw new NotImplementedException();
+        await _employees.AddAsync(employee);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task<Employee> GetEmployeeById(Guid id) => await _employees.FirstOrDefaultAsync(x => x.EmployeeId == id);
+    
+
+    public async Task Update(Employee employee)
+    {
+        _employees.Update(employee);
+       await _dbContext.SaveChangesAsync();
+    }
+    
+
+    public async Task Delete(Employee employee)
+    {
+        _dbContext.Remove(employee);
+        await _dbContext.SaveChangesAsync();
+
     }
 }

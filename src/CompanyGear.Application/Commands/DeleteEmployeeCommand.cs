@@ -1,8 +1,8 @@
 using CompanyGear.Application.Abstractions;
 
-namespace CompanyGear.Application.Commands.Handlers;
+namespace CompanyGear.Application.Commands;
 
-public class DeleteEmployeeCommand : ICommand
+public sealed record DeleteEmployeeCommand(Guid EmployeeId) : ICommand
 {
     
 }
