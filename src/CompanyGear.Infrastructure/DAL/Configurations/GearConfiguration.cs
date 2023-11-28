@@ -10,7 +10,7 @@ public class GearConfiguration : IEntityTypeConfiguration<Gear>
 {
     public void Configure(EntityTypeBuilder<Gear> builder)
     {
-        builder.HasKey(x => x.GearId);
+        builder.HasKey(x => x.Id);
         builder.Property(x => x.Type).HasConversion(x => x.Value, x => new Type(x));
         builder.Property(x => x.Model).HasConversion(x => x.Value, x => new Model(x));
         builder.Property(x => x.SerialNumber).HasConversion(x => x.Value, x => new SerialNumber(x));

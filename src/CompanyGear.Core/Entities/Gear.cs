@@ -5,7 +5,7 @@ namespace CompanyGear.Core.Entities;
 
 public class Gear
 {
-    public Guid GearId { get; }
+    public Guid Id { get; }
     public Type Type { get; }
     public Model Model { get; }
     public SerialNumber SerialNumber { get; }
@@ -13,7 +13,7 @@ public class Gear
 
     private Gear(Guid id, string type, string model, string serialNumber, string uteNumber)
     {
-        GearId = id;
+        Id = id;
         Type = type;
         Model = model;
         SerialNumber = serialNumber;

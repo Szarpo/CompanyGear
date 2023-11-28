@@ -17,7 +17,7 @@ internal sealed class GetEmployeeByIdQueryHandler : IQueryHandler<GetEmployeeByI
     public async Task<EmployeeDto> HandleASync(GetEmployeeByIdQuery query)
     {
 
-        var employee = await _dbContext.Employees.AsNoTracking().SingleOrDefaultAsync(x => x.EmployeeId == query.EmployeeId);
+        var employee = await _dbContext.Employees.AsNoTracking().SingleOrDefaultAsync(x => x.Id == query.EmployeeId);
         return employee.AsDto();
     }
 }

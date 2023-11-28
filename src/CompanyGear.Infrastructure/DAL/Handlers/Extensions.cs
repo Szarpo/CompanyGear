@@ -7,7 +7,7 @@ public static class Extensions
 {
     public static EmployeeDto AsDto(this Employee entity) => new()
     {
-        EmployeeId = entity.EmployeeId,
+        EmployeeId = entity.Id,
         FirstName = entity.FirstName,
         LastName = entity.LastName,
         Department = entity.Department,
