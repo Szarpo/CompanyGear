@@ -12,8 +12,9 @@ internal static class Extensions
 
     public static IServiceCollection AddPostgres(this IServiceCollection services, IConfiguration configuration)
     {
-        var postgresOptions = configuration.GetConnectionString(OptionsSectionName);
-        services.AddDbContext<CompanyGearDbContext>(x => x.UseNpgsql(postgresOptions));
+        services.Configure<Configurations.PostgresOptions>(configuration.GetRequiredSection(OptionsSectionName));
+        var postgresOptions = configuration.GetOptions<Configurations.PostgresOptions>(OptionsSectionName);
+        services.AddDbContext<CompanyGearDbContext>(x => x.UseNpgsql(postgresOptions.ConnectionString));
         
         return services;
     }
