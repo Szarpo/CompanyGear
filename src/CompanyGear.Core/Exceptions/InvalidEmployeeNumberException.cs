@@ -2,9 +2,9 @@ namespace CompanyGear.Core.Exceptions;
 
 public sealed class InvalidEmployeeNumberException : CustomException
 {
-    public int EmployeeNumber { get; }
+    public string EmployeeNumber { get; }
 
-    public InvalidEmployeeNumberException(int employeeNumber) : base($"EmployeeNumber {employeeNumber} is invalid.")
+    public InvalidEmployeeNumberException(string employeeNumber) : base($"EmployeeNumber {employeeNumber} is invalid.")
     {
         EmployeeNumber = employeeNumber;
     }

@@ -4,16 +4,16 @@ namespace CompanyGear.Core.Entities;
 
 public class Employee
 {
-    public Guid Id { get;  }
-    public FirstName FirstName { get; }
-    public LastName LastName { get; } 
-    public EmployeeNumber EmployeeNumber { get; }
-    public Department Department { get;  }
+    public Guid EmployeeId { get;}
+    public FirstName FirstName { get; private set; }
+    public LastName LastName { get; private set; } 
+    public EmployeeNumber EmployeeNumber { get; private set; }
+    public Department Department { get;  private set; }
     
 
-    private Employee(Guid id, string firstName, string lastName, int employeeNumber, string department)
+    private Employee(Guid id, string firstName, string lastName, string employeeNumber, string department)
     {
-        Id = id;
+        EmployeeId = id;
         FirstName = firstName;
         LastName = lastName;
         EmployeeNumber = employeeNumber;
@@ -29,5 +29,13 @@ public class Employee
     {
         return new Employee(Guid.NewGuid(), firstName, lastName, employeeNumber, department);
     }
-    
+
+    public void Update(FirstName firstName, LastName lastName, EmployeeNumber employeeNumber, Department department)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        EmployeeNumber = employeeNumber;
+        Department = department;
+    }
+
 }
