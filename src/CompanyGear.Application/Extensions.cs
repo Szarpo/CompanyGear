@@ -10,6 +10,9 @@ public static class Extensions
     public static IServiceCollection AddApplication(this IServiceCollection service)
     {
         service.AddScoped<ICommandHandler<CreateEmployeeCommand>, CreateEmployeeCommandHandler>();
+        service.AddScoped<ICommandHandler<UpdateEmployeeCommand>, UpdateEmployeeCommandHandler>();
+        service.AddScoped<ICommandHandler<DeleteEmployeeCommand>, DeleteEmployeeCommandHandler>();
+        service.AddScoped<ICommandHandler<CreateGearCommand>, CreateGearCommandHandler>();
         return service;
     }
 }

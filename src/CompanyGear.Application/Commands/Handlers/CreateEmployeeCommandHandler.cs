@@ -16,8 +16,8 @@ public sealed class CreateEmployeeCommandHandler : ICommandHandler<CreateEmploye
     public async Task HandleAsync(CreateEmployeeCommand command)
     {
         var (firstName, lastName, employeeNumber, department) = command;
-        var newEmployee = Employee.Create(new FirstName(firstName), lastName, employeeNumber, department);
+        var newEmployee = Employee.Create(firstName, lastName, employeeNumber, department);
 
-        await _employeeRepository.Add(newEmployee);
+        await _employeeRepository.Add(employee: newEmployee);
     }
 }
