@@ -365,3 +365,4 @@ FodyWeavers.xsd
 /src/docker-compose.yml
 appsettings.Production.json
 .idea
+CompanyGear.Infrastructure/DAL/Migrations/
