@@ -6,7 +6,7 @@ public sealed record Type
 {
     public string Value { get; }
 
-    public Type(string value)
+    private Type(string value)
     {
         if (string.IsNullOrWhiteSpace(value)) throw new InvalidTypeException(value);
             Value = value;
