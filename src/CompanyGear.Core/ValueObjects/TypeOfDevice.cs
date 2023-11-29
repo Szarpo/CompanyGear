@@ -1,18 +1,17 @@
 using CompanyGear.Core.Exceptions;
-
 namespace CompanyGear.Core.ValueObjects;
 
-public sealed record Type
+public sealed record TypeOfDevice
 {
     public string Value { get; }
 
-    private Type(string value)
+    public TypeOfDevice(string value)
     {
         if (string.IsNullOrWhiteSpace(value)) throw new InvalidTypeException(value);
             Value = value;
 
     }
 
-    public static implicit operator string(Type type) => type.ToString();
-    public static implicit operator Type(string value) => new Type(value);
+    public static implicit operator string(TypeOfDevice typeOfDevice) => typeOfDevice.ToString();
+    public static implicit operator TypeOfDevice(string value) => new TypeOfDevice(value);
 }

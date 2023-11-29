@@ -14,4 +14,15 @@ public static class Extensions
         EmployeeNumber = entity.EmployeeNumber
 
     };
+
+    public static GearDto GearAsDto(this Gear entity) => new()
+    {
+        Id = entity.Id,
+        TypeOfDevice = entity.TypeOfDevice,
+        Model = entity.Model,
+        SerialNumber = entity.SerialNumber,
+        UteNumber = entity.UteNumber,
+        EmployeeId = entity.EmployeeId
+        
+    };
 }

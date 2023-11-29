@@ -1,32 +1,30 @@
 using CompanyGear.Core.ValueObjects;
-using Type = CompanyGear.Core.ValueObjects.Type;
 
 namespace CompanyGear.Core.Entities;
 
 public class Gear
 {
     public Guid Id { get; }
-    public Type Type { get; }
+    public TypeOfDevice TypeOfDevice { get; }
     public Model Model { get; }
     public SerialNumber SerialNumber { get; }
     public UteNumber UteNumber { get; }
+    
+    public Guid EmployeeId { get; }
 
-    private Gear(Guid id, string type, string model, string serialNumber, string uteNumber)
+    private Gear(Guid id, string typeOfDevice, string model, string serialNumber, string uteNumber)
     {
         Id = id;
-        Type = type;
+        TypeOfDevice = typeOfDevice;
         Model = model;
         SerialNumber = serialNumber;
         UteNumber = uteNumber;
     }
 
-    public Gear()
-    {
-        
-    }
+    public Gear() {}
 
-    public static Gear Create(string type, string model, string serialNumber, string uteNumber)
+    public static Gear Create(TypeOfDevice typeOfDevice, Model model, SerialNumber serialNumber, UteNumber uteNumber)
     {
-        return new Gear(Guid.NewGuid(), type, model, serialNumber, uteNumber);
+        return new Gear(Guid.NewGuid(), typeOfDevice, model, serialNumber, uteNumber);
     }
 }

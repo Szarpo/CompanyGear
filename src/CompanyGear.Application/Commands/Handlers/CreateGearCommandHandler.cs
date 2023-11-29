@@ -15,8 +15,8 @@ public sealed class CreateGearCommandHandler : ICommandHandler<CreateGearCommand
     
     public async Task HandleAsync(CreateGearCommand command)
     {
-        var (type, model, serialNumber, uteNumber) = command;
-        var newGear = Gear.Create(type, model, serialNumber, uteNumber);
+        var (typeOfDevice, model, serialNumber, uteNumber) = command;
+        var newGear = Gear.Create(typeOfDevice, model, serialNumber, uteNumber);
         await _repository.Add(newGear);
     }
 }
