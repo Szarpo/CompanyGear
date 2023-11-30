@@ -5,11 +5,12 @@ namespace CompanyGear.Core.Entities;
 public class Gear
 {
     public Guid Id { get; }
-    public TypeOfDevice TypeOfDevice { get; }
-    public Model Model { get; }
-    public SerialNumber SerialNumber { get; }
-    public UteNumber UteNumber { get; }
+    public TypeOfDevice TypeOfDevice { get; private set; }
+    public Model Model { get; private set;}
+    public SerialNumber SerialNumber { get; private set;}
+    public UteNumber UteNumber { get; private set;}
     public Guid EmployeeId { get; }
+    public Employee Employee { get; }
 
     private Gear(Guid id, string typeOfDevice, string model, string serialNumber, string uteNumber)
     {
