@@ -29,7 +29,7 @@ internal sealed class EmployeeRepository : IEmployeeRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<Employee> GetEmployeeById(Guid id) => await _employees.FirstOrDefaultAsync(x => x.EmployeeId == id);
+    public async Task<Employee> GetEmployeeById(Guid id) => await _employees.FirstOrDefaultAsync(x => x.Id == id);
     
 
     public async Task Update(Employee employee)

@@ -1,5 +1,4 @@
 using CompanyGear.Core.Exceptions;
-
 namespace CompanyGear.Core.ValueObjects;
 
 public sealed record LastName

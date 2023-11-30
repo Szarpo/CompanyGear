@@ -4,7 +4,7 @@ namespace CompanyGear.Core.Entities;
 
 public class Employee
 {
-    public Guid EmployeeId { get;}
+    public Guid Id { get;}
     public FirstName FirstName { get; private set; }
     public LastName LastName { get; private set; } 
     public EmployeeNumber EmployeeNumber { get; private set; }
@@ -13,7 +13,7 @@ public class Employee
 
     private Employee(Guid id, string firstName, string lastName, string employeeNumber, string department)
     {
-        EmployeeId = id;
+        Id = id;
         FirstName = firstName;
         LastName = lastName;
         EmployeeNumber = employeeNumber;
