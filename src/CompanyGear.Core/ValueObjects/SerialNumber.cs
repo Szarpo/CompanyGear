@@ -12,6 +12,6 @@ public sealed record SerialNumber
         Value = value;
     }
 
-    public static implicit operator string(SerialNumber serialNumber) => serialNumber.ToString();
+    public static implicit operator string(SerialNumber serialNumber) => serialNumber.Value;
     public static implicit operator SerialNumber(string value) => new SerialNumber(value);
 }

@@ -1,6 +1,3 @@
-using CompanyGear.Core.ValueObjects;
-using Type = System.Type;
-
 namespace CompanyGear.Application.DTO;
 
 public class GearDto

@@ -9,9 +9,10 @@ internal sealed class GetGearsQueryHandler : IQueryHandler<GetGearsQuery, IEnume
 {
     private readonly CompanyGearDbContext _dbContext;
 
-    public GetGearsQueryHandler(CompanyGearDbContext dbContext)=>  _dbContext = dbContext;
+    public GetGearsQueryHandler(CompanyGearDbContext dbContext) => _dbContext = dbContext;
     
     
-    public async Task<IEnumerable<GearDto>> HandleASync(GetGearsQuery query) => await _dbContext.Gears.AsNoTracking().Select(x => x.GearAsDto()).ToListAsync();
+    public async Task<IEnumerable<GearDto>> HandleASync(GetGearsQuery query) => 
+        await _dbContext.Gears.AsNoTracking().Select(x => x.GearAsDto()).ToListAsync();
 
 }

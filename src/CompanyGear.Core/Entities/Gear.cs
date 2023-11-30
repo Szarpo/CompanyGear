@@ -9,7 +9,6 @@ public class Gear
     public Model Model { get; }
     public SerialNumber SerialNumber { get; }
     public UteNumber UteNumber { get; }
-    
     public Guid EmployeeId { get; }
 
     private Gear(Guid id, string typeOfDevice, string model, string serialNumber, string uteNumber)

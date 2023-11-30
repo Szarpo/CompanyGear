@@ -13,6 +13,6 @@ public sealed record UteNumber
         Value = value;
     }
 
-    public static implicit operator string(UteNumber uteNumber) => uteNumber.ToString();
+    public static implicit operator string(UteNumber uteNumber) => uteNumber.Value;
     public static implicit operator UteNumber(string value) => new UteNumber(value);
 }
