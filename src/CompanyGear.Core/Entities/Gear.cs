@@ -10,7 +10,7 @@ public class Gear
     public SerialNumber SerialNumber { get; private set;}
     public UteNumber UteNumber { get; private set;}
     public Guid EmployeeId { get; }
-    public Employee Employee { get; }
+    public Employee Employee { get; private set; }
 
     private Gear(Guid id, string typeOfDevice, string model, string serialNumber, string uteNumber)
     {
