@@ -13,12 +13,8 @@ internal sealed class GetEmployeeWithGearQueryHandler : IQueryHandler<GetEmploye
 
     public async Task<GearWithEmployeeDto> HandleASync(GetEmployeeWithGearQuery query)
     {
-
-
-
         var result = await _dbContext.Gears.Include(x=> x.Employee).FirstOrDefaultAsync(x=> x.EmployeeId == query.EmployeeId);
-
-
+        
         return result.GearWithEmployeeAsDto();
 
     }

@@ -9,7 +9,7 @@ public class Gear
     public Model Model { get; private set;}
     public SerialNumber SerialNumber { get; private set;}
     public UteNumber UteNumber { get; private set;}
-    public Guid EmployeeId { get; }
+    public Guid EmployeeId { get; private set; }
     public Employee Employee { get; private set; }
 
     private Gear(Guid id, string typeOfDevice, string model, string serialNumber, string uteNumber)
@@ -27,4 +27,10 @@ public class Gear
     {
         return new Gear(Guid.NewGuid(), typeOfDevice, model, serialNumber, uteNumber);
     }
+
+    public void AssignmentGearToEmployee(Guid employeeId)
+    {
+        EmployeeId = employeeId;
+    }
+    
 }

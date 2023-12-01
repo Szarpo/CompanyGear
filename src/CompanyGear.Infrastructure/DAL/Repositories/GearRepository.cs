@@ -22,4 +22,12 @@ internal sealed class GearRepository : IGearRepository
         await _gears.AddAsync(gear);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<Gear> GetById(Guid id) => await _gears.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+
+    public async Task AssignmentGearToEmployee(Gear gear)
+    {
+         _gears.Update(gear);
+         await _dbContext.SaveChangesAsync();
+    }
 }
