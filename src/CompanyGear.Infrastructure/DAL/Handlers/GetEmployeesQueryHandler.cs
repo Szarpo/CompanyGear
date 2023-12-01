@@ -13,5 +13,5 @@ internal sealed class GetEmployeesQueryHandler : IQueryHandler<GetEmployeesQuery
     public GetEmployeesQueryHandler(CompanyGearDbContext dbContext) => _dbContext = dbContext;
 
     public async Task<IEnumerable<EmployeeDto>> HandleASync(GetEmployeesQuery query) =>
-        await _dbContext.Employees.AsNoTracking().Select(x=> x.AsDto()).ToListAsync();
+        await _dbContext.Employees.AsNoTracking().Select(x=> x.EmployeeAsDto()).ToListAsync();
 }

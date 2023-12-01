@@ -6,7 +6,7 @@ namespace CompanyGear.Infrastructure.DAL.Handlers;
 
 public static class Extensions
 {
-    public static EmployeeDto AsDto(this Employee entity) => new()
+    public static EmployeeDto EmployeeAsDto(this Employee entity) => new()
     {
         EmployeeId = entity.Id,
         FirstName = entity.FirstName,
@@ -35,7 +35,7 @@ public static class Extensions
         Model = gear.Model,
         SerialNumber = gear.SerialNumber,
         UteNumber = gear.UteNumber,
-        Employee = gear.Employee.AsDto()
+        Employee = gear.Employee.EmployeeAsDto()
         
     };
 
