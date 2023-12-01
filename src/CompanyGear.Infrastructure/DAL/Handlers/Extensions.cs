@@ -1,3 +1,4 @@
+
 using CompanyGear.Application.DTO;
 using CompanyGear.Core.Entities;
 
@@ -5,13 +6,14 @@ namespace CompanyGear.Infrastructure.DAL.Handlers;
 
 public static class Extensions
 {
-    public static EmployeeDto AsDto(this Employee entity) => new()
+    public static EmployeeDto EmployeeAsDto(this Employee entity) => new()
     {
         EmployeeId = entity.Id,
         FirstName = entity.FirstName,
         LastName = entity.LastName,
         Department = entity.Department,
         EmployeeNumber = entity.EmployeeNumber
+        
 
     };
 
@@ -25,4 +27,16 @@ public static class Extensions
         EmployeeId = entity.EmployeeId
         
     };
+
+    public static GearWithEmployeeDto GearWithEmployeeAsDto(this Gear gear) => new()
+    {
+        Id = gear.Id,
+        TypeOfDevice = gear.TypeOfDevice,
+        Model = gear.Model,
+        SerialNumber = gear.SerialNumber,
+        UteNumber = gear.UteNumber,
+        Employee = gear.Employee.EmployeeAsDto()
+        
+    };
+
 }

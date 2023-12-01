@@ -21,6 +21,7 @@ public static class Extensions
         service.AddScoped<IQueryHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>>, GetEmployeesQueryHandler>();
         service.AddScoped<IQueryHandler<GetEmployeeByIdQuery, EmployeeDto>, GetEmployeeByIdQueryHandler>();
         service.AddScoped<IQueryHandler<GetGearsQuery, IEnumerable<GearDto>>, GetGearsQueryHandler>();
+        service.AddScoped<IQueryHandler<GetEmployeeWithGearQuery, GearWithEmployeeDto>, GetEmployeeWithGearQueryHandler>();
 
         return service;
     }

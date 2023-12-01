@@ -13,6 +13,7 @@ public static class Extensions
         service.AddScoped<ICommandHandler<UpdateEmployeeCommand>, UpdateEmployeeCommandHandler>();
         service.AddScoped<ICommandHandler<DeleteEmployeeCommand>, DeleteEmployeeCommandHandler>();
         service.AddScoped<ICommandHandler<CreateGearCommand>, CreateGearCommandHandler>();
+        service.AddScoped<ICommandHandler<AssignmentGearToEmployeeCommand>, AssignmentGearToEmployeeCommandHandler>();
         return service;
     }
 }

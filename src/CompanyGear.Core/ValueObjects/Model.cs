@@ -12,6 +12,6 @@ public sealed record Model
         Value = value;
     }
 
-    public static implicit operator string(Model model) => model.ToString();
+    public static implicit operator string(Model model) => model.Value;
     public static implicit operator Model(string value) => new Model(value);
 }

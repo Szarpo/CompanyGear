@@ -18,6 +18,6 @@ internal sealed class GetEmployeeByIdQueryHandler : IQueryHandler<GetEmployeeByI
     {
 
         var employee = await _dbContext.Employees.AsNoTracking().SingleOrDefaultAsync(x => x.Id == query.EmployeeId);
-        return employee.AsDto();
+        return employee.EmployeeAsDto();
     }
 }

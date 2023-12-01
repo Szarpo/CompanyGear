@@ -2,10 +2,10 @@ namespace CompanyGear.Core.Exceptions;
 
 public class InvalidTypeException : CustomException
 {
-    public string Type { get; }
+    public string TypeOfDevice { get; }
     
-    public InvalidTypeException(string type) : base($"Type: {type} is invalid.")
+    public InvalidTypeException(string typeOfDevice) : base($"Type: {typeOfDevice} is invalid.")
     {
-        Type = type;
+        TypeOfDevice = typeOfDevice;
     }
 }

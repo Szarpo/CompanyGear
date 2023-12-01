@@ -12,6 +12,6 @@ public sealed record TypeOfDevice
 
     }
 
-    public static implicit operator string(TypeOfDevice typeOfDevice) => typeOfDevice.ToString();
+    public static implicit operator string(TypeOfDevice typeOfDevice) => typeOfDevice.Value;
     public static implicit operator TypeOfDevice(string value) => new TypeOfDevice(value);
 }

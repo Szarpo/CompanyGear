@@ -13,11 +13,15 @@ public class GearController : ControllerBase
 {
     private readonly ICommandHandler<CreateGearCommand> _createGear;
     private readonly IQueryHandler<GetGearsQuery, IEnumerable<GearDto>> _getGears;
+    private readonly IQueryHandler<GetEmployeeWithGearQuery, GearWithEmployeeDto> _getEmployeeWithGear;
+    private readonly ICommandHandler<AssignmentGearToEmployeeCommand> _assignmentGearToEmployee;
 
-    public GearController(ICommandHandler<CreateGearCommand> createGear, IQueryHandler<GetGearsQuery, IEnumerable<GearDto>> getGears)
+    public GearController(ICommandHandler<CreateGearCommand> createGear, IQueryHandler<GetGearsQuery, IEnumerable<GearDto>> getGears, IQueryHandler<GetEmployeeWithGearQuery, GearWithEmployeeDto> getEmployeeWithGear, ICommandHandler<AssignmentGearToEmployeeCommand> assignmentGearToEmployee)
     {
         _createGear = createGear;
         _getGears = getGears;
+        _getEmployeeWithGear = getEmployeeWithGear;
+        _assignmentGearToEmployee = assignmentGearToEmployee;
     }
 
 
@@ -32,6 +36,19 @@ public class GearController : ControllerBase
     public  async Task<ActionResult<IEnumerable<GearDto>>> GetGears([FromQuery] GetGearsQuery query)
     {
         return Ok(await _getGears.HandleASync(query));
+    }
+
+    [HttpGet("{employeeId}")]
+    public async Task<ActionResult<GearWithEmployeeDto>> GetGearByEmployee(Guid employeeId)
+    {
+        return Ok(await _getEmployeeWithGear.HandleASync( new GetEmployeeWithGearQuery {EmployeeId = employeeId}));
+    }
+
+    [HttpPut()]
+    public async Task<ActionResult> AssignmentGearToEmployee([FromQuery] AssignmentGearToEmployeeCommand command)
+    {
+        await _assignmentGearToEmployee.HandleAsync(command);
+        return NoContent();
     }
 
 }
