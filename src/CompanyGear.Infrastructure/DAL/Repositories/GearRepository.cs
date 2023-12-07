@@ -30,4 +30,16 @@ internal sealed class GearRepository : IGearRepository
          _gears.Update(gear);
          await _dbContext.SaveChangesAsync();
     }
+
+    public async Task RemovalEmployeeFromGear(Gear gear)
+    {
+        _gears.Update(gear);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task Delete(Gear gear)
+    {
+         _gears.Remove(gear);
+         await _dbContext.SaveChangesAsync();
+    }
 }

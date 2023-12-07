@@ -32,5 +32,10 @@ public class Gear
     {
         EmployeeId = employeeId;
     }
+
+    public void RemovalEmployeeFromGear(Guid employeeId)
+    {
+        EmployeeId = employeeId;
+    }
     
 }
