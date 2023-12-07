@@ -16,6 +16,7 @@ public static class Extensions
     {
         service.AddScoped<IEmployeeRepository, EmployeeRepository>();
         service.AddScoped<IGearRepository, GearRepository>();
+        service.AddScoped<IRelationRepository, RelationRepository>();
         service.AddPostgres(configuration);
 
         service.AddScoped<IQueryHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>>, GetEmployeesQueryHandler>();
