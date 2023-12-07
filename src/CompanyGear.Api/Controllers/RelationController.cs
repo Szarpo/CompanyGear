@@ -1,4 +1,6 @@
 using CompanyGear.Application.Commands;
+using CompanyGear.Application.DTO;
+using CompanyGear.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +22,13 @@ public class RelationController : ControllerBase
     public async Task<ActionResult> AddRelationGearWithEmployee(CreateRelationEmployeeWithGearCommand command)
     {
         await _mediator.Send(command);
-        return Ok();
+        return NoContent();
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<RelationDto>>> GetRelations([FromQuery] GetRelationsQuery query)
+    {
+        return Ok(await _mediator.Send(query));
     }
 
 }

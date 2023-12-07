@@ -5,6 +5,7 @@ using CompanyGear.Core.Repositories;
 using CompanyGear.Infrastructure.DAL;
 using CompanyGear.Infrastructure.DAL.Handlers;
 using CompanyGear.Infrastructure.DAL.Repositories;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +24,8 @@ public static class Extensions
         service.AddScoped<IQueryHandler<GetEmployeeByIdQuery, EmployeeDto>, GetEmployeeByIdQueryHandler>();
         service.AddScoped<IQueryHandler<GetGearsQuery, IEnumerable<GearDto>>, GetGearsQueryHandler>();
         service.AddScoped<IQueryHandler<GetEmployeeWithGearQuery, GearWithEmployeeDto>, GetEmployeeWithGearQueryHandler>();
+
+        service.AddScoped<IRequestHandler<GetRelationsQuery, IEnumerable<RelationDto>>, GetRelationsQueryHandler>();
 
         return service;
     }

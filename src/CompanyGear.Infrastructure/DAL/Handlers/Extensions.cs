@@ -39,4 +39,14 @@ public static class Extensions
         
     };
 
+    public static RelationDto RelationEmployeeWithGearAsDto(this Relation relation, Employee employee, Gear gear)
+    {
+        return new RelationDto()
+        {
+            Id = relation.Id,
+            Employee = employee.EmployeeAsDto(),
+            Gear = gear.GearAsDto(),
+        };
+    }
+
 }
