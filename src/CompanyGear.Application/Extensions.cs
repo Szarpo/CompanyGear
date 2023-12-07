@@ -17,9 +17,7 @@ public static class Extensions
         service.AddScoped<ICommandHandler<UpdateEmployeeCommand>, UpdateEmployeeCommandHandler>();
         service.AddScoped<ICommandHandler<DeleteEmployeeCommand>, DeleteEmployeeCommandHandler>();
         service.AddScoped<ICommandHandler<CreateGearCommand>, CreateGearCommandHandler>();
-        service.AddScoped<ICommandHandler<RemovalEmployeeFromGearCommand>, RemovalEmployeeFromGearCommandHandler>();
         service.AddScoped<ICommandHandler<DeleteGearCommand>, DeleteGearCommandHandler>();
-        service.AddScoped<IRequestHandler<CreateRelationEmployeeWithGearCommand, Unit>, CreateRelationEmployeeWithGearCommandHandler>();
         return service;
     }
 }  

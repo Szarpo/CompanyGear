@@ -12,16 +12,12 @@ public class GearController : ControllerBase
 {
     private readonly ICommandHandler<CreateGearCommand> _createGear;
     private readonly IQueryHandler<GetGearsQuery, IEnumerable<GearDto>> _getGears;
-    private readonly IQueryHandler<GetEmployeeWithGearQuery, GearWithEmployeeDto> _getEmployeeWithGear;
-    private readonly ICommandHandler<RemovalEmployeeFromGearCommand> _removalEmployeeFromGear;
     private readonly ICommandHandler<DeleteGearCommand> _deleteGear;
 
-    public GearController(ICommandHandler<CreateGearCommand> createGear, IQueryHandler<GetGearsQuery, IEnumerable<GearDto>> getGears, IQueryHandler<GetEmployeeWithGearQuery, GearWithEmployeeDto> getEmployeeWithGear, ICommandHandler<RemovalEmployeeFromGearCommand> removalEmployeeFromGear, ICommandHandler<DeleteGearCommand> deleteGear)
+    public GearController(ICommandHandler<CreateGearCommand> createGear, IQueryHandler<GetGearsQuery, IEnumerable<GearDto>> getGears,   ICommandHandler<DeleteGearCommand> deleteGear)
     {
         _createGear = createGear;
         _getGears = getGears;
-        _getEmployeeWithGear = getEmployeeWithGear;
-        _removalEmployeeFromGear = removalEmployeeFromGear;
         _deleteGear = deleteGear;
     }
 
@@ -39,25 +35,7 @@ public class GearController : ControllerBase
         return Ok(await _getGears.HandleASync(query));
     }
 
-    [HttpGet("{employeeId}")]
-    public async Task<ActionResult<GearWithEmployeeDto>> GetGearByEmployee(Guid employeeId)
-    {
-        return Ok(await _getEmployeeWithGear.HandleASync( new GetEmployeeWithGearQuery {EmployeeId = employeeId}));
-    }
 
-    [HttpPut("/assignmentGearToEmployee")]
-    public async Task<ActionResult> AssignmentGearToEmployee([FromQuery] CreateRelationEmployeeWithGearCommand command)
-    {
-        //await _assignmentGearToEmployee.HandleAsync(command);
-        return NoContent();
-    }
-
-    [HttpPut("/removalEmployeeFromGear")]
-    public async Task<ActionResult> RemovalEmployeeFromGear([FromQuery] RemovalEmployeeFromGearCommand command)
-    {
-        await _removalEmployeeFromGear.HandleAsync(command);
-        return NoContent();
-    }
 
     [HttpDelete]
     public async Task<ActionResult> DeleteGear([FromQuery] Guid gearId)

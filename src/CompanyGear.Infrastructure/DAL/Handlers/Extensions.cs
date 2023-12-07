@@ -28,17 +28,6 @@ public static class Extensions
         
     };
 
-    public static GearWithEmployeeDto GearWithEmployeeAsDto(this Gear gear) => new()
-    {
-        Id = gear.Id,
-        TypeOfDevice = gear.TypeOfDevice,
-        Model = gear.Model,
-        SerialNumber = gear.SerialNumber,
-        UteNumber = gear.UteNumber,
-        Employee = gear.Employee.EmployeeAsDto()
-        
-    };
-
     public static RelationDto RelationEmployeeWithGearAsDto(this Relation relation, Employee employee, Gear gear)
     {
         return new RelationDto()
