@@ -1,5 +1,3 @@
-using System.Reflection;
-using CompanyGear.Application.Abstractions;
 using CompanyGear.Application.Commands;
 using CompanyGear.Application.Commands.Handlers;
 using MediatR;
@@ -13,13 +11,12 @@ public static class Extensions
     public static IServiceCollection AddApplication(this IServiceCollection service)
     {
 
-        service.AddScoped<ICommandHandler<CreateEmployeeCommand>, CreateEmployeeCommandHandler>();
-        service.AddScoped<ICommandHandler<UpdateEmployeeCommand>, UpdateEmployeeCommandHandler>();
-        service.AddScoped<ICommandHandler<DeleteEmployeeCommand>, DeleteEmployeeCommandHandler>();
-        service.AddScoped<ICommandHandler<CreateGearCommand>, CreateGearCommandHandler>();
-        service.AddScoped<ICommandHandler<DeleteGearCommand>, DeleteGearCommandHandler>();
-
         service.AddScoped<IRequestHandler<DeleteRelationCommand, Unit>, DeleteRelationCommandHandler>();
+        service.AddScoped<IRequestHandler<CreateGearCommand, Unit>, CreateGearCommandHandler>();
+        service.AddScoped<IRequestHandler<DeleteGearCommand, Unit>, DeleteGearCommandHandler>();
+        service.AddScoped<IRequestHandler<DeleteEmployeeCommand, Unit>, DeleteEmployeeCommandHandler>();
+        service.AddScoped<IRequestHandler<UpdateEmployeeCommand, Unit>, UpdateEmployeeCommandHandler>();
+        service.AddScoped<IRequestHandler<CreateEmployeeCommand, Unit>, CreateEmployeeCommandHandler>();
         
         return service;
     }

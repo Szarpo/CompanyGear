@@ -1,4 +1,3 @@
-using CompanyGear.Application.Abstractions;
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
 using CompanyGear.Core.Repositories;
@@ -20,12 +19,14 @@ public static class Extensions
         service.AddScoped<IRelationRepository, RelationRepository>();
         service.AddPostgres(configuration);
 
-        service.AddScoped<IQueryHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>>, GetEmployeesQueryHandler>();
-        service.AddScoped<IQueryHandler<GetEmployeeByIdQuery, EmployeeDto>, GetEmployeeByIdQueryHandler>();
-        service.AddScoped<IQueryHandler<GetGearsQuery, IEnumerable<GearDto>>, GetGearsQueryHandler>();
 
         service.AddScoped<IRequestHandler<GetRelationsQuery, IEnumerable<RelationDto>>, GetRelationsQueryHandler>();
         service.AddScoped<IRequestHandler<GetRelationByIdQuery, RelationDto>, GetRelationByIdQueryHandler>();
+        service.AddScoped<IRequestHandler<GetGearByIdQuery, GearDto>, GetGearByIdQueryHandler>();
+        service.AddScoped<IRequestHandler<GetGearsQuery, IEnumerable<GearDto>>, GetGearsQueryHandler>();
+        service.AddScoped<IRequestHandler<GetEmployeeByIdQuery, EmployeeDto>, GetEmployeeByIdQueryHandler>();
+        service.AddScoped<IRequestHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>>, GetEmployeesQueryHandler>();
+
 
         return service;
     }

@@ -7,6 +7,5 @@ public class GearDto
     public string? Model { get; set; }
     public string? SerialNumber { get; set; }
     public string? UteNumber { get; set; }
-    public Guid EmployeeId { get; set; }
     
 }

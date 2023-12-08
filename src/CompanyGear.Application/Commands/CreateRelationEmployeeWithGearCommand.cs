@@ -1,4 +1,3 @@
-using CompanyGear.Application.Abstractions;
 using MediatR;
 
 namespace CompanyGear.Application.Commands;

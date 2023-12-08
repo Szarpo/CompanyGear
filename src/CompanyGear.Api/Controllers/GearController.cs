@@ -1,7 +1,7 @@
-using CompanyGear.Application.Abstractions;
 using CompanyGear.Application.Commands;
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyGear.Api.Controllers;
@@ -10,38 +10,36 @@ namespace CompanyGear.Api.Controllers;
 [Route("gear")]
 public class GearController : ControllerBase
 {
-    private readonly ICommandHandler<CreateGearCommand> _createGear;
-    private readonly IQueryHandler<GetGearsQuery, IEnumerable<GearDto>> _getGears;
-    private readonly ICommandHandler<DeleteGearCommand> _deleteGear;
+    private readonly IMediator _mediator;
 
-    public GearController(ICommandHandler<CreateGearCommand> createGear, IQueryHandler<GetGearsQuery, IEnumerable<GearDto>> getGears,   ICommandHandler<DeleteGearCommand> deleteGear)
+    public GearController(IMediator mediator)
     {
-        _createGear = createGear;
-        _getGears = getGears;
-        _deleteGear = deleteGear;
+        _mediator = mediator;
     }
 
 
     [HttpPost]
     public async Task<ActionResult> Create(CreateGearCommand command)
     {
-        await _createGear.HandleAsync(command);
+        await _mediator.Send(command);
         return NoContent();
     }
 
     [HttpGet]
     public  async Task<ActionResult<IEnumerable<GearDto>>> GetGears([FromQuery] GetGearsQuery query)
     {
-        return Ok(await _getGears.HandleASync(query));
+        return Ok(await _mediator.Send(query));
     }
-
 
     [HttpDelete]
-    public async Task<ActionResult> DeleteGear([FromQuery] Guid gearId)
+    public async Task<ActionResult> DeleteGear([FromQuery] DeleteGearCommand command)
     {
-        var command = new DeleteGearCommand(GearId: gearId);
-        await _deleteGear.HandleAsync(command);
+        await _mediator.Send(command);
         return NoContent();
     }
+
+    [HttpGet("gearId")]
+    public async Task<ActionResult<GearDto>> GetById([FromQuery] GetGearByIdQuery query)
+        => await _mediator.Send(query);
 
 }

@@ -24,7 +24,6 @@ public static class Extensions
         Model = entity.Model,
         SerialNumber = entity.SerialNumber,
         UteNumber = entity.UteNumber,
-        EmployeeId = entity.EmployeeId
         
     };
 

@@ -1,5 +1,5 @@
-using CompanyGear.Application.Abstractions;
+using MediatR;
 
 namespace CompanyGear.Application.Commands;
 
-public sealed record DeleteGearCommand(Guid GearId) : ICommand;
+public sealed record DeleteGearCommand(Guid GearId) : IRequest;
