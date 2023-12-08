@@ -3,7 +3,7 @@ using CompanyGear.Application.DTO;
 
 namespace CompanyGear.Application.Queries;
 
-public class GetEmployeeByIdQuery : IQuery<EmployeeDto>
+public record GetEmployeeByIdQuery : IQuery<EmployeeDto>
 {
     public Guid EmployeeId { get; set; }
 }

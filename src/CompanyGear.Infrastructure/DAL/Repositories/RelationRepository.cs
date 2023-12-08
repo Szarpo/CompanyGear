@@ -14,10 +14,18 @@ internal sealed class RelationRepository : IRelationRepository
         _dbContext = dbContext;
         _relations = dbContext.Relations;
     }
-    
+
     public async Task CreateRelationEmployeeToGear(Relation relation)
     {
         await _relations.AddAsync(relation);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task Delete(Relation relation)
+    {
+        _relations.Remove(relation);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task<Relation> GetById(Guid id) => await _relations.FirstOrDefaultAsync(x => x.Id == id);
 }

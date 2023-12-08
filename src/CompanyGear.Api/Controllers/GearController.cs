@@ -36,7 +36,6 @@ public class GearController : ControllerBase
     }
 
 
-
     [HttpDelete]
     public async Task<ActionResult> DeleteGear([FromQuery] Guid gearId)
     {

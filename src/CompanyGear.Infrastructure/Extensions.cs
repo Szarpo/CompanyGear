@@ -25,6 +25,7 @@ public static class Extensions
         service.AddScoped<IQueryHandler<GetGearsQuery, IEnumerable<GearDto>>, GetGearsQueryHandler>();
 
         service.AddScoped<IRequestHandler<GetRelationsQuery, IEnumerable<RelationDto>>, GetRelationsQueryHandler>();
+        service.AddScoped<IRequestHandler<GetRelationByIdQuery, RelationDto>, GetRelationByIdQueryHandler>();
 
         return service;
     }
