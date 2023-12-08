@@ -40,6 +40,6 @@ public class GearController : ControllerBase
 
     [HttpGet("gearId")]
     public async Task<ActionResult<GearDto>> GetById([FromQuery] GetGearByIdQuery query)
-        => await _mediator.Send(query);
+        => Ok(await _mediator.Send(query));
 
 }
