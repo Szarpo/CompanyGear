@@ -31,4 +31,15 @@ public class RelationController : ControllerBase
         return Ok(await _mediator.Send(query));
     }
 
+    [HttpDelete]
+    public async Task<ActionResult> DeleteRelation([FromQuery] DeleteRelationCommand command)
+    {
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpGet("relationId")]
+    public async Task<ActionResult<RelationDto>> GetRelationById([FromQuery] GetRelationByIdQuery query) 
+        => Ok(await _mediator.Send(query));
+
 }

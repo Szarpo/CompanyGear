@@ -1,4 +1,3 @@
-using CompanyGear.Application.Abstractions;
 using CompanyGear.Core.Entities;
 using CompanyGear.Core.Repositories;
 using MediatR;

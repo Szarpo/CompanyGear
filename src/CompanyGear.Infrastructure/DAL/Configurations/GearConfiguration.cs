@@ -14,6 +14,5 @@ public class GearConfiguration : IEntityTypeConfiguration<Gear>
         builder.Property(x => x.Model).HasConversion(x => x.Value, x => new Model(x));
         builder.Property(x => x.SerialNumber).HasConversion(x => x.Value, x => new SerialNumber(x));
         builder.Property(x => x.UteNumber).HasConversion(x => x.Value, x => new UteNumber(x));
-        builder.Property(x=> x.EmployeeId);
     }
 }

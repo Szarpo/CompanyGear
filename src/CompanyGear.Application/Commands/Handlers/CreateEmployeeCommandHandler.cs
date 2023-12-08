@@ -1,11 +1,10 @@
-using CompanyGear.Application.Abstractions;
 using CompanyGear.Core.Entities;
 using CompanyGear.Core.Repositories;
-using CompanyGear.Core.ValueObjects;
+using MediatR;
 
 namespace CompanyGear.Application.Commands.Handlers;
 
-public sealed class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeCommand>
+public sealed class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand>
 {
     private readonly IEmployeeRepository _employeeRepository;
 
@@ -13,11 +12,13 @@ public sealed class CreateEmployeeCommandHandler : ICommandHandler<CreateEmploye
     {
         _employeeRepository = employeeRepository;
     }
-    public async Task HandleAsync(CreateEmployeeCommand command)
+    public async Task<Unit> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
-        var (firstName, lastName, employeeNumber, department) = command;
+        var (firstName, lastName, employeeNumber, department) = request;
         var newEmployee = Employee.Create(firstName, lastName, employeeNumber, department);
 
         await _employeeRepository.Add(employee: newEmployee);
+        
+        return Unit.Value;
     }
 }

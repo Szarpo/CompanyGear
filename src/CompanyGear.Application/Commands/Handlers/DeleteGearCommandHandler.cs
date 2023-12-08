@@ -1,9 +1,9 @@
-using CompanyGear.Application.Abstractions;
 using CompanyGear.Core.Repositories;
+using MediatR;
 
 namespace CompanyGear.Application.Commands.Handlers;
 
-public class DeleteGearCommandHandler : ICommandHandler<DeleteGearCommand>
+public class DeleteGearCommandHandler : IRequestHandler<DeleteGearCommand>
 {
     private readonly IGearRepository _gearRepository;
 
@@ -11,9 +11,11 @@ public class DeleteGearCommandHandler : ICommandHandler<DeleteGearCommand>
     {
         _gearRepository = gearRepository;
     }
-    public async Task HandleAsync(DeleteGearCommand command)
+
+    public async Task<Unit> Handle(DeleteGearCommand request, CancellationToken cancellationToken)
     {
-        var gearToRemove = await _gearRepository.GetById(command.GearId);
+        var gearToRemove = await _gearRepository.GetById(request.GearId);
         await _gearRepository.Delete(gearToRemove);
+        return Unit.Value;
     }
 }

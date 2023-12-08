@@ -24,18 +24,6 @@ public static class Extensions
         Model = entity.Model,
         SerialNumber = entity.SerialNumber,
         UteNumber = entity.UteNumber,
-        EmployeeId = entity.EmployeeId
-        
-    };
-
-    public static GearWithEmployeeDto GearWithEmployeeAsDto(this Gear gear) => new()
-    {
-        Id = gear.Id,
-        TypeOfDevice = gear.TypeOfDevice,
-        Model = gear.Model,
-        SerialNumber = gear.SerialNumber,
-        UteNumber = gear.UteNumber,
-        Employee = gear.Employee.EmployeeAsDto()
         
     };
 
@@ -48,5 +36,7 @@ public static class Extensions
             Gear = gear.GearAsDto(),
         };
     }
+    
+
 
 }

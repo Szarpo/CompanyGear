@@ -1,9 +1,6 @@
-using CompanyGear.Application.Abstractions;
 using CompanyGear.Application.DTO;
+using MediatR;
 
 namespace CompanyGear.Application.Queries;
 
-public class GetEmployeesQuery : IQuery<IEnumerable<EmployeeDto>>
-{
-    
-}
+public record GetEmployeesQuery() : IRequest<IEnumerable<EmployeeDto>>;

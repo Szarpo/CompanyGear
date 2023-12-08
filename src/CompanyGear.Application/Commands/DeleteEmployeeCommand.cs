@@ -1,8 +1,5 @@
-using CompanyGear.Application.Abstractions;
+using MediatR;
 
 namespace CompanyGear.Application.Commands;
 
-public sealed record DeleteEmployeeCommand(Guid EmployeeId) : ICommand
-{
-    
-}
+public sealed record DeleteEmployeeCommand(Guid EmployeeId) : IRequest;

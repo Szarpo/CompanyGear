@@ -1,6 +1,5 @@
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
-using CompanyGear.Core.Entities;
 using CompanyGear.Core.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
