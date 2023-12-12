@@ -1,6 +1,7 @@
 using CompanyGear.Application.Commands;
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
+using CompanyGear.Core.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,7 @@ namespace CompanyGear.Api.Controllers;
 
 [ApiController]
 [Route("gear")]
-public class GearController : ControllerBase
+public class   GearController : ControllerBase
 {
     private readonly IMediator _mediator;
 
@@ -19,8 +20,9 @@ public class GearController : ControllerBase
 
 
     [HttpPost]
-    public async Task<ActionResult> Create(CreateGearCommand command)
+    public async Task<ActionResult> Create([FromBody] CreateGearCommand command)
     {
+      
         await _mediator.Send(command);
         return NoContent();
     }

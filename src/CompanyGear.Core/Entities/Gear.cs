@@ -1,3 +1,4 @@
+using CompanyGear.Core.Enums;
 using CompanyGear.Core.ValueObjects;
 
 namespace CompanyGear.Core.Entities;
@@ -10,7 +11,7 @@ public class Gear
     public SerialNumber SerialNumber { get; private set;}
     public UteNumber UteNumber { get; private set;}
 
-    private Gear(Guid id, string typeOfDevice, string model, string serialNumber, string uteNumber)
+    private Gear(Guid id, TypeOfDevice typeOfDevice, string model, string serialNumber, string uteNumber)
     {
         Id = id;
         TypeOfDevice = typeOfDevice;
