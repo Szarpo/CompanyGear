@@ -3,6 +3,7 @@ using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace CompanyGear.Api.Controllers;
 

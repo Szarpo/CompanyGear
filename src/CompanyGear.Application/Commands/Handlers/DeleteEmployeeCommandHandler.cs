@@ -13,10 +13,10 @@ public sealed class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmploye
         _repository = repository;
     }
 
-    public async Task<Unit> Handle(DeleteEmployeeCommand request, CancellationToken cancellationToken)
+
+    public async Task Handle(DeleteEmployeeCommand request, CancellationToken cancellationToken)
     {
         var employeeToDelete = await _repository.GetEmployeeById(request.EmployeeId);
         await _repository.Delete(employeeToDelete);
-        return Unit.Value;
     }
 }

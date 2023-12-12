@@ -12,13 +12,12 @@ public sealed class CreateEmployeeCommandHandler : IRequestHandler<CreateEmploye
     {
         _employeeRepository = employeeRepository;
     }
-    public async Task<Unit> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
+
+    public async Task Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
         var (firstName, lastName, employeeNumber, department) = request;
         var newEmployee = Employee.Create(firstName, lastName, employeeNumber, department);
 
         await _employeeRepository.Add(employee: newEmployee);
-        
-        return Unit.Value;
     }
 }

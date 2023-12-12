@@ -14,12 +14,11 @@ public sealed class CreateGearCommandHandler : IRequestHandler<CreateGearCommand
         _repository = repository;
     }
 
-    public async Task<Unit> Handle(CreateGearCommand request, CancellationToken cancellationToken)
+
+    public async Task Handle(CreateGearCommand request, CancellationToken cancellationToken)
     {
         var (typeOfDevice, model, serialNumber, uteNumber) = request;
         var newGear = Gear.Create(new TypeOfDevice(typeOfDevice), model, serialNumber, uteNumber);
         await _repository.Add(newGear);
-        return Unit.Value;
-        
     }
 }

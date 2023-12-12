@@ -12,10 +12,10 @@ public class DeleteGearCommandHandler : IRequestHandler<DeleteGearCommand>
         _gearRepository = gearRepository;
     }
 
-    public async Task<Unit> Handle(DeleteGearCommand request, CancellationToken cancellationToken)
+
+    public async Task Handle(DeleteGearCommand request, CancellationToken cancellationToken)
     {
         var gearToRemove = await _gearRepository.GetById(request.GearId);
         await _gearRepository.Delete(gearToRemove);
-        return Unit.Value;
     }
 }

@@ -12,8 +12,8 @@ public sealed class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmploye
     {
         _employeeRepository = employeeRepository;
     }
-    
-    public async Task<Unit> Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
+
+    public async Task Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
     {
         var (id, firstName, lastName, employeeNumber, department) = request;
         var employee = await _employeeRepository.GetEmployeeById(id: id);
@@ -25,6 +25,5 @@ public sealed class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmploye
         );
 
         await _employeeRepository.Update(employee);
-        return Unit.Value;
     }
 }

@@ -45,4 +45,6 @@ internal sealed class EmployeeRepository : IEmployeeRepository
         await _dbContext.SaveChangesAsync();
 
     }
+
+    public async Task<bool> IsExistId(Guid employeeId) => await _employees.AnyAsync(x => x.Id == employeeId);
 }

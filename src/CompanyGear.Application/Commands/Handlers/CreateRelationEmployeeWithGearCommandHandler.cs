@@ -14,12 +14,10 @@ public sealed class CreateRelationEmployeeWithGearCommandHandler : IRequestHandl
     }
 
 
-    public async Task<Unit> Handle(CreateRelationEmployeeWithGearCommand request, CancellationToken cancellationToken)
+    public async Task Handle(CreateRelationEmployeeWithGearCommand request, CancellationToken cancellationToken)
     {
         var (employeeId, gearId) = request;
         var newRelation = Relation.CreateRelation(employeeId: request.EmployeeId, gearId: request.GearId);
         await _relationRepository.CreateRelationEmployeeToGear(newRelation);
-
-            return Unit.Value;
     }
 }
