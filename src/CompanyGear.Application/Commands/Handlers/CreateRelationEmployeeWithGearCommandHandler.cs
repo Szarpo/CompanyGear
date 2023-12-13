@@ -7,10 +7,12 @@ namespace CompanyGear.Application.Commands.Handlers;
 public sealed class CreateRelationEmployeeWithGearCommandHandler : IRequestHandler<CreateRelationEmployeeWithGearCommand>
 {
     private readonly IRelationRepository _relationRepository;
+    private readonly IEmployeeRepository _employeeRepository;
 
-    public CreateRelationEmployeeWithGearCommandHandler(IRelationRepository relationRepository)
+    public CreateRelationEmployeeWithGearCommandHandler(IRelationRepository relationRepository, IEmployeeRepository employeeRepository)
     {
         _relationRepository = relationRepository;
+        _employeeRepository = employeeRepository;
     }
 
 

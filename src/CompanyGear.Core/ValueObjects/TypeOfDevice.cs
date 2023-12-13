@@ -1,5 +1,4 @@
 using CompanyGear.Core.Enums;
-using CompanyGear.Core.Exceptions;
 namespace CompanyGear.Core.ValueObjects;
 
 public sealed record TypeOfDevice
@@ -14,5 +13,5 @@ public sealed record TypeOfDevice
     }
 
     public static implicit operator string(TypeOfDevice typeOfDevice) => typeOfDevice.Value.ToString();
-    public static implicit operator TypeOfDevice(string value) => new TypeOfDevice(value);
+    public static implicit operator TypeOfDevice(int value) => new TypeOfDevice(value);
 }

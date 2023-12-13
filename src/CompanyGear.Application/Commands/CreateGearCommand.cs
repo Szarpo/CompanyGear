@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using CompanyGear.Core.Enums;
 using MediatR;
 
