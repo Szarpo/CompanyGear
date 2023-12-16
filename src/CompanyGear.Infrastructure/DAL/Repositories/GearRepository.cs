@@ -24,11 +24,19 @@ internal sealed class GearRepository : IGearRepository
     }
 
     public async Task<Gear> GetById(Guid id) => await _gears.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
-    
+    public async Task Update(Gear gear)
+    {
+         _gears.Update(gear);
+        await _dbContext.SaveChangesAsync();
+    }
+
 
     public async Task Delete(Gear gear)
     {
          _gears.Remove(gear);
          await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<bool> IsExist(Guid id) => await _gears.AnyAsync(x => x.Id == id);
+    
 }

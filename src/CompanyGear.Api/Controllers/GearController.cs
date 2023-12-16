@@ -33,6 +33,13 @@ public class   GearController : ControllerBase
         return Ok(await _mediator.Send(query));
     }
 
+    [HttpPut]
+    public async Task<ActionResult> UpdateGear([FromBody] UpdateGearCommand command)
+    {
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
     [HttpDelete]
     public async Task<ActionResult> DeleteGear([FromQuery] DeleteGearCommand command)
     {
