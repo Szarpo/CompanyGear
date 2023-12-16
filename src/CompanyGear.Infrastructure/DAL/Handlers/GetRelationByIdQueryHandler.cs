@@ -1,5 +1,7 @@
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
+using CompanyGear.Core.Exceptions;
+using CompanyGear.Core.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,11 +11,23 @@ internal sealed class GetRelationByIdQueryHandler : IRequestHandler<GetRelationB
 {
 
     private readonly CompanyGearDbContext _dbContext;
+    private readonly IRelationRepository _relationRepository;
 
-    public GetRelationByIdQueryHandler(CompanyGearDbContext dbContext) =>  _dbContext = dbContext;
+    public GetRelationByIdQueryHandler(CompanyGearDbContext dbContext, IRelationRepository relationRepository)
+    {
+        _dbContext = dbContext;
+        _relationRepository = relationRepository;
+    }
 
         public async Task<RelationDto> Handle(GetRelationByIdQuery request, CancellationToken cancellationToken)
-    {
+        {
+            var isExist = await _relationRepository.IsExistId(relationId: request.RelationId);
+
+            if (!isExist)
+            {
+                throw new InvalidNotExistIdException(id: request.RelationId);
+            }
+        
         var relation = await _dbContext.Relations.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.RelationId, cancellationToken: cancellationToken);
 
         var employee = await _dbContext.Employees.AsNoTracking().FirstOrDefaultAsync(x => x.Id == relation.EmployeeId, cancellationToken: cancellationToken);

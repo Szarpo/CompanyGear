@@ -1,8 +1,5 @@
-using System.Reflection.Metadata;
-using CompanyGear.Application.DTO;
 using CompanyGear.Core.Entities;
 using CompanyGear.Core.Repositories;
-using CompanyGear.Infrastructure.DAL.Handlers;
 using Microsoft.EntityFrameworkCore;
 
 namespace CompanyGear.Infrastructure.DAL.Repositories;

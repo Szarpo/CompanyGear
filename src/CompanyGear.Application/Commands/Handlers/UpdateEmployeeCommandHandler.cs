@@ -20,7 +20,7 @@ public sealed class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmploye
         var isExist = await _employeeRepository.IsExist(id: id);
         if (!isExist)
         {
-            throw new InvalidNotExistIdException(message: id);
+            throw new InvalidNotExistIdException(id: id);
         }
         var employee = await _employeeRepository.GetEmployeeById(id: id);
         employee.Update(

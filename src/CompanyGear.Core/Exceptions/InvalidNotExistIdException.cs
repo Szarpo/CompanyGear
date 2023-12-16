@@ -4,8 +4,8 @@ public sealed class InvalidNotExistIdException : CustomException
 {
     public Guid Id { get; }
     
-    public InvalidNotExistIdException(Guid message) : base($"ID: {message} does not exist.")
+    public InvalidNotExistIdException(Guid id) : base($"ID: {id} does not exist.")
     {
-        Id = message;
+        Id = id;
     }
 }
