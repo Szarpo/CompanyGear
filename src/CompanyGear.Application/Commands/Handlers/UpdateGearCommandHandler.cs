@@ -17,11 +17,11 @@ public class UpdateGearCommandHandler : IRequestHandler<UpdateGearCommand>
     public async Task Handle(UpdateGearCommand request, CancellationToken cancellationToken)
     {
         var (gearId, typeOfDevice, model, serialNumber,uteNumber) = request;
-        var isExist = await _gearRepository.IsExist(request.GearId);
+        var isExist = await _gearRepository.IsExist(gearId);
         
         if (!isExist)
         {
-            throw new InvalidGearIdException(request.GearId);
+            throw new InvalidNotExistIdException(request.GearId);
         }
         
         var gear = await _gearRepository.GetById(request.GearId);

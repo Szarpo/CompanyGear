@@ -46,5 +46,5 @@ internal sealed class EmployeeRepository : IEmployeeRepository
 
     }
 
-
+    public async Task<bool> IsExist(Guid id) => await _employees.AnyAsync(x => x.Id == id);
 }
