@@ -34,6 +34,7 @@ public static class Extensions
             Id = relation.Id,
             Employee = employee.EmployeeAsDto(),
             Gear = gear.GearAsDto(),
+            RelationStatus = relation.RelationStatus,
         };
     }
     

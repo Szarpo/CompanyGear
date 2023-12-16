@@ -1,3 +1,4 @@
+using System.Reflection;
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
 using CompanyGear.Core.Repositories;
@@ -12,23 +13,17 @@ namespace CompanyGear.Infrastructure;
 
 public static class Extensions 
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection service, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        service.AddScoped<IEmployeeRepository, EmployeeRepository>();
-        service.AddScoped<IGearRepository, GearRepository>();
-        service.AddScoped<IRelationRepository, RelationRepository>();
-        service.AddPostgres(configuration);
+        services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+        services.AddScoped<IGearRepository, GearRepository>();
+        services.AddScoped<IRelationRepository, RelationRepository>();
+        services.AddPostgres(configuration);
 
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
-        service.AddScoped<IRequestHandler<GetRelationsQuery, IEnumerable<RelationDto>>, GetRelationsQueryHandler>();
-        service.AddScoped<IRequestHandler<GetRelationByIdQuery, RelationDto>, GetRelationByIdQueryHandler>();
-        service.AddScoped<IRequestHandler<GetGearByIdQuery, GearDto>, GetGearByIdQueryHandler>();
-        service.AddScoped<IRequestHandler<GetGearsQuery, IEnumerable<GearDto>>, GetGearsQueryHandler>();
-        service.AddScoped<IRequestHandler<GetEmployeeByIdQuery, EmployeeDto>, GetEmployeeByIdQueryHandler>();
-        service.AddScoped<IRequestHandler<GetEmployeesQuery, IEnumerable<EmployeeDto>>, GetEmployeesQueryHandler>();
-
-
-        return service;
+        
+        return services;
     }
     
     public static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : class, new()

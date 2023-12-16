@@ -1,8 +1,5 @@
-using System.Reflection.Metadata;
-using CompanyGear.Application.DTO;
 using CompanyGear.Core.Entities;
 using CompanyGear.Core.Repositories;
-using CompanyGear.Infrastructure.DAL.Handlers;
 using Microsoft.EntityFrameworkCore;
 
 namespace CompanyGear.Infrastructure.DAL.Repositories;
@@ -45,4 +42,6 @@ internal sealed class EmployeeRepository : IEmployeeRepository
         await _dbContext.SaveChangesAsync();
 
     }
+
+    public async Task<bool> IsExist(Guid id) => await _employees.AnyAsync(x => x.Id == id);
 }

@@ -3,6 +3,7 @@ using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace CompanyGear.Api.Controllers;
 
@@ -31,7 +32,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet("employeeId")]
-    public async Task<ActionResult<EmployeeDto>> GetEmployeeById(GetEmployeeByIdQuery query)
+    public async Task<ActionResult<EmployeeDto>> GetEmployeeById([FromQuery] GetEmployeeByIdQuery query)
     {
         return Ok( await _mediator.Send(query));
     }
@@ -44,7 +45,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<ActionResult> DeleteEmployee([FromHeader] DeleteEmployeeCommand command)
+    public async Task<ActionResult> DeleteEmployee([FromQuery] DeleteEmployeeCommand command)
     {
         await _mediator.Send(command);
         return NoContent();

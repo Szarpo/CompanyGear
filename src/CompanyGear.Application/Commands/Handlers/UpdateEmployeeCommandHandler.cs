@@ -1,3 +1,4 @@
+using CompanyGear.Core.Exceptions;
 using CompanyGear.Core.Repositories;
 using CompanyGear.Core.ValueObjects;
 using MediatR;
@@ -12,10 +13,15 @@ public sealed class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmploye
     {
         _employeeRepository = employeeRepository;
     }
-    
-    public async Task<Unit> Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
+
+    public async Task Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
     {
         var (id, firstName, lastName, employeeNumber, department) = request;
+        var isExist = await _employeeRepository.IsExist(id: id);
+        if (!isExist)
+        {
+            throw new InvalidNotExistIdException(id: id);
+        }
         var employee = await _employeeRepository.GetEmployeeById(id: id);
         employee.Update(
             firstName: new FirstName(firstName),
@@ -25,6 +31,5 @@ public sealed class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmploye
         );
 
         await _employeeRepository.Update(employee);
-        return Unit.Value;
     }
 }

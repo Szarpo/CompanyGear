@@ -19,7 +19,14 @@ public class RelationController : ControllerBase
     }
     
     [HttpPost] 
-    public async Task<ActionResult> AddRelationGearWithEmployee(CreateRelationEmployeeWithGearCommand command)
+    public async Task<ActionResult> AddRelationGearWithEmployee([FromBody] CreateRelationEmployeeWithGearCommand command)
+    {
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpPut("archiveRelation")]
+    public async Task<ActionResult> ArchiveRelation([FromBody] ArchiveRelationCommand command)
     {
         await _mediator.Send(command);
         return NoContent();
