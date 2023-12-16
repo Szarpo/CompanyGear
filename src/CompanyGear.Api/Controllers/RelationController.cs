@@ -25,6 +25,13 @@ public class RelationController : ControllerBase
         return NoContent();
     }
 
+    [HttpPut("archiveRelation")]
+    public async Task<ActionResult> ArchiveRelation([FromBody] ArchiveRelationCommand command)
+    {
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<RelationDto>>> GetRelations([FromQuery] GetRelationsQuery query)
     {

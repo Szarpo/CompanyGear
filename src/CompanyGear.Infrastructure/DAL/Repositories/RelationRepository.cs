@@ -21,6 +21,12 @@ internal sealed class RelationRepository : IRelationRepository
         await _dbContext.SaveChangesAsync();
     }
 
+    public async Task ArchiveRelation(Relation relation)
+    {
+         _relations.Update(relation);
+        await _dbContext.SaveChangesAsync();
+    }
+
     public async Task Delete(Relation relation)
     {
         _relations.Remove(relation);
@@ -28,4 +34,5 @@ internal sealed class RelationRepository : IRelationRepository
     }
 
     public async Task<Relation> GetById(Guid id) => await _relations.FirstOrDefaultAsync(x => x.Id == id);
+    public async Task<bool> IsExistId(Guid relationId) => await _relations.AnyAsync(x => x.GearId == relationId);
 }

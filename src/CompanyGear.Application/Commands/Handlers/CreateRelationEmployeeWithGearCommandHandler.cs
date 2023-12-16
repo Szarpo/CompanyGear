@@ -1,4 +1,5 @@
 using CompanyGear.Core.Entities;
+using CompanyGear.Core.Exceptions;
 using CompanyGear.Core.Repositories;
 using MediatR;
 
@@ -18,6 +19,13 @@ public sealed class CreateRelationEmployeeWithGearCommandHandler : IRequestHandl
 
     public async Task Handle(CreateRelationEmployeeWithGearCommand request, CancellationToken cancellationToken)
     {
+
+        var isExist = await _relationRepository.IsExistId(request.GearId);
+        if (isExist)
+        {
+            throw new InvalidGearIdAssignedException(request.GearId);
+        }
+        
         var (employeeId, gearId) = request;
         var newRelation = Relation.CreateRelation(employeeId: request.EmployeeId, gearId: request.GearId);
         await _relationRepository.CreateRelationEmployeeToGear(newRelation);

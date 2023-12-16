@@ -23,4 +23,10 @@ public class Relation
     {
         return new Relation(id: new Guid(), employeeId: employeeId, gearId: gearId, relationStatus: new RelationStatus(0));
     }
+
+    public void ArchiveRelation(RelationStatus relationStatus)
+    {
+        RelationStatus = relationStatus;
+    }
+    
 }
