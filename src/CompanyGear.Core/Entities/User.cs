@@ -31,5 +31,10 @@ public class User
         return new User(id:  Guid.NewGuid(), login: login, fullName: fullName, password: password, new Role(0), createdAt: DateTime.UtcNow.AddHours(1));
     }
 
- 
+    public void Update(Login login, FullName fullName)
+    {
+        Login = login;
+        FullName = fullName;
+    }
+
 }

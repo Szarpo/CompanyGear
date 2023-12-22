@@ -23,4 +23,13 @@ internal sealed class UserRepository : IUserRepository
     }
 
     public async Task<bool> LoginIsExist(string login) => await _users.AnyAsync(x => x.Login == login);
+    public async Task<bool> UserExist(Guid userId) => await _users.AnyAsync(x => x.Id == userId);
+
+    public async Task Update(User user)
+    {
+         _users.Update(user);
+         await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task<User> GetById(Guid userId) => await _users.FirstOrDefaultAsync(x => x.Id == userId);
 }

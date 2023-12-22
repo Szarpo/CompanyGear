@@ -24,6 +24,7 @@ internal sealed class GearRepository : IGearRepository
     }
 
     public async Task<Gear> GetById(Guid id) => await _gears.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+    
     public async Task Update(Gear gear)
     {
          _gears.Update(gear);

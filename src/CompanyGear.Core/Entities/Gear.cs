@@ -27,7 +27,7 @@ public class Gear
         return new Gear(Guid.NewGuid(), typeOfDevice, model, serialNumber, uteNumber);
     }
 
-    public  void Update(TypeOfDevice typeOfDevice, Model model, SerialNumber serialNumber, UteNumber uteNumber)
+    public void Update(TypeOfDevice typeOfDevice, Model model, SerialNumber serialNumber, UteNumber uteNumber)
     {
         TypeOfDevice = typeOfDevice;
         Model = model;
