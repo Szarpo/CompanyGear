@@ -16,4 +16,8 @@
       <ProjectReference Include="..\CompanyGear.Core\CompanyGear.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Security\" />
+    </ItemGroup>
+
 </Project>

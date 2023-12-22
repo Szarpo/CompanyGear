@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <Folder Include="DAL\Migrations\" />
+      <Folder Include="Security\" />
     </ItemGroup>
 
 </Project>
