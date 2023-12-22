@@ -1,11 +1,9 @@
 using System.Reflection;
-using CompanyGear.Application.DTO;
-using CompanyGear.Application.Queries;
+using CompanyGear.Application.Security;
 using CompanyGear.Core.Repositories;
 using CompanyGear.Infrastructure.DAL;
-using CompanyGear.Infrastructure.DAL.Handlers;
 using CompanyGear.Infrastructure.DAL.Repositories;
-using MediatR;
+using CompanyGear.Infrastructure.Security;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,7 +16,9 @@ public static class Extensions
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         services.AddScoped<IGearRepository, GearRepository>();
         services.AddScoped<IRelationRepository, RelationRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
         services.AddPostgres(configuration);
+        services.AddSecurity();
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 

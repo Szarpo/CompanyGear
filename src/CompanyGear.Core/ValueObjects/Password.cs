@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using CompanyGear.Core.Exceptions;
 
 namespace CompanyGear.Core.ValueObjects;
@@ -9,7 +8,7 @@ public sealed record Password
 
     public Password(string value)
     {
-        if (string.IsNullOrWhiteSpace(value) || value.Length is > 30 or < 6)
+        if (string.IsNullOrWhiteSpace(value) || value.Length is > 200 or < 6)
         {
             throw new InvalidPasswordException();
         }

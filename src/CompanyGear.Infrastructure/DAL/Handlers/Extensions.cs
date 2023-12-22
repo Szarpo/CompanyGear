@@ -37,7 +37,16 @@ public static class Extensions
             RelationStatus = relation.RelationStatus,
         };
     }
-    
+
+    public static UserDto UserAsDto(this User entity) => new()
+    {
+        Id = entity.Id,
+        Login = entity.Login,
+        Fullname = entity.FullName,
+        CreatedAt = entity.CreatedAt,
+        Role = entity.Role,
+    };
+
 
 
 }

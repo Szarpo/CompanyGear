@@ -1,4 +1,6 @@
 using CompanyGear.Application.Commands;
+using CompanyGear.Application.DTO;
+using CompanyGear.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,5 +24,8 @@ public class UserController : ControllerBase
         await _mediator.Send(command);
         return NoContent();
     }
+
+    [HttpGet]
+    public async Task<ActionResult<UserDto>> GetAll([FromQuery] GetUsersQuery query) => Ok(await _mediator.Send(query));
 
 }

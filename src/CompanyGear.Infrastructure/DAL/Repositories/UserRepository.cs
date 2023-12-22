@@ -21,4 +21,6 @@ internal sealed class UserRepository : IUserRepository
         await _users.AddAsync(user);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<bool> LoginIsExist(string login) => await _users.AnyAsync(x => x.Login == login);
 }

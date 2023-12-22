@@ -1,4 +1,3 @@
-using CompanyGear.Core.Enums;
 using CompanyGear.Core.ValueObjects;
 
 namespace CompanyGear.Core.Entities;
@@ -29,7 +28,7 @@ public class User
 
     public static User CreateAccount(Login login, FullName fullName, Password password)
     {
-        return new User(id:  Guid.NewGuid(), login: login, fullName: fullName, password: password, new Role(0), createdAt: DateTime.Now);
+        return new User(id:  Guid.NewGuid(), login: login, fullName: fullName, password: password, new Role(0), createdAt: DateTime.UtcNow.AddHours(1));
     }
 
  
