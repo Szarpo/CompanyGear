@@ -44,6 +44,13 @@ public class UserController : ControllerBase
 
     [HttpGet("userId")]
     public async Task<ActionResult<UserDto>> GetById([FromQuery] GetUserByIdQuery query) =>  Ok(await _mediator.Send(query));
-    
+
+    [HttpPut("changeRole")]
+    public async Task<ActionResult> ChangeRole([FromBody] ChangeRoleCommand command)
+    {
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
 
 }

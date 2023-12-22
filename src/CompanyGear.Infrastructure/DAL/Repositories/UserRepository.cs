@@ -38,4 +38,10 @@ internal sealed class UserRepository : IUserRepository
         _users.Remove(user);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task ChangeRole(User user)
+    {
+        _users.Update(user);
+        await _dbContext.SaveChangesAsync();
+    }
 }
