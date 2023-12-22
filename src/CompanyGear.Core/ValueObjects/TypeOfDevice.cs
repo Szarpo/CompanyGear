@@ -1,4 +1,6 @@
 using CompanyGear.Core.Enums;
+using CompanyGear.Core.Exceptions;
+
 namespace CompanyGear.Core.ValueObjects;
 
 public sealed record TypeOfDevice
@@ -8,7 +10,10 @@ public sealed record TypeOfDevice
 
     public TypeOfDevice(TypeOfGearEnum value)
     {
-
+        if (!Enum.IsDefined(typeof(TypeOfGearEnum), value))
+        {
+            throw new InvalidTypeException(value.ToString());
+        }
         Value = value;
     }
 

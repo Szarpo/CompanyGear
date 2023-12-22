@@ -27,5 +27,10 @@ public class User
         
     }
 
+    public static User CreateAccount(Login login, FullName fullName, Password password)
+    {
+        return new User(id:  Guid.NewGuid(), login: login, fullName: fullName, password: password, new Role(0), createdAt: DateTime.Now);
+    }
+
  
 }
