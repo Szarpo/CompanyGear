@@ -1,4 +1,5 @@
 using CompanyGear.Core.Enums;
+using CompanyGear.Core.Exceptions;
 
 namespace CompanyGear.Core.ValueObjects;
 
@@ -8,7 +9,10 @@ public sealed record RelationStatus
 
     public RelationStatus(RelationStatusEnum value)
     {
-
+        if (!Enum.IsDefined(typeof(RelationStatusEnum), value))
+        {
+            throw new InvalidRelationStatusException(value.ToString());
+        }
         Value = value;
     }
 
