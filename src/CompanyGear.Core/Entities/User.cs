@@ -37,4 +37,9 @@ public class User
         FullName = fullName;
     }
 
+    public void ChangeRole(Role role)
+    {
+        Role = role;
+    }
+
 }

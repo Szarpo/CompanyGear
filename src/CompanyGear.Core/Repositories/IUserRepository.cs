@@ -11,5 +11,6 @@ public interface IUserRepository
      Task<User> GetById(Guid userId);
 
      Task DeleteUser(User user);
+     Task ChangeRole(User user);
 
 }
