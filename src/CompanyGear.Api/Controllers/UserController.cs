@@ -35,6 +35,13 @@ public class UserController : ControllerBase
         return NoContent();
     }
 
+    [HttpDelete]
+    public async Task<ActionResult> DeleteUser([FromQuery] DeleteUserCommand command)
+    {
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
     [HttpGet("userId")]
     public async Task<ActionResult<UserDto>> GetById([FromQuery] GetUserByIdQuery query) =>  Ok(await _mediator.Send(query));
     

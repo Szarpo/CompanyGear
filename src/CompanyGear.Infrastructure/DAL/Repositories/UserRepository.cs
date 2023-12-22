@@ -32,4 +32,10 @@ internal sealed class UserRepository : IUserRepository
     }
 
     public async Task<User> GetById(Guid userId) => await _users.FirstOrDefaultAsync(x => x.Id == userId);
+    
+    public async Task DeleteUser(User user)
+    {
+        _users.Remove(user);
+        await _dbContext.SaveChangesAsync();
+    }
 }
