@@ -28,4 +28,7 @@ public class UserController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<UserDto>> GetAll([FromQuery] GetUsersQuery query) => Ok(await _mediator.Send(query));
 
+    [HttpGet("userId")]
+    public async Task<ActionResult<UserDto>> GetById([FromQuery] GetUserByIdQuery query) =>  Ok(await _mediator.Send(query));
+
 }
