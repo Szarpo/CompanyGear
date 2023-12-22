@@ -1,3 +1,4 @@
+using CompanyGear.Core.Enums;
 using CompanyGear.Core.ValueObjects;
 
 namespace CompanyGear.Core.Entities;
@@ -8,10 +9,10 @@ public class User
     public Login Login { get; private set; }
     public FullName FullName { get; private set; }
     public Password Password { get; private set; }
-    public string Role { get; private set; }
+    public Role Role { get; private set; }
     public DateTime CreatedAt { get; private set; }
     
-    private User(Guid id, string login, string fullName, string password, string role, DateTime createdAt)
+    private User(Guid id, string login, string fullName, string password, Role role, DateTime createdAt)
     {
         Id = id;
         Login = login;

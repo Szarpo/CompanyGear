@@ -1,6 +1,6 @@
 namespace CompanyGear.Core.ValueObjects;
 
-public sealed class FullName
+public sealed record FullName
 {
     public string Value { get; }
 

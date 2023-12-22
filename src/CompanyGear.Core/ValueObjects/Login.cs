@@ -3,7 +3,7 @@ using CompanyGear.Core.Exceptions;
 
 namespace CompanyGear.Core.ValueObjects;
 
-public sealed class Login
+public sealed record Login
 {
     public string Value { get; set; }
 
