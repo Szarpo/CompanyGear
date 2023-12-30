@@ -8,7 +8,7 @@ namespace CompanyGear.Api.Controllers;
 
 [ApiController]
 [Route("user")]
-public class UserController : ControllerBase
+public class UserController : ControllerBase 
 {
 
     private readonly IMediator _mediator;

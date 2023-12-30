@@ -1,6 +1,7 @@
 using System.Reflection;
 using CompanyGear.Application.Security;
 using CompanyGear.Core.Repositories;
+using CompanyGear.Infrastructure.Auth;
 using CompanyGear.Infrastructure.DAL;
 using CompanyGear.Infrastructure.DAL.Repositories;
 using CompanyGear.Infrastructure.Security;
@@ -19,6 +20,7 @@ public static class Extensions
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddPostgres(configuration);
         services.AddSecurity();
+        services.AddAuth(configuration);
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
