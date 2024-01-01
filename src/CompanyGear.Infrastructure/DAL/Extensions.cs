@@ -1,4 +1,5 @@
-using CompanyGear.Infrastructure.DAL.Configurations;
+using CompanyGear.Core.Repositories;
+using CompanyGear.Infrastructure.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,11 @@ internal static class Extensions
 
     public static IServiceCollection AddPostgres(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+        services.AddScoped<IGearRepository, GearRepository>();
+        services.AddScoped<IRelationRepository, RelationRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        
         services.Configure<Configurations.PostgresOptions>(configuration.GetRequiredSection(OptionsSectionName));
         var postgresOptions = configuration.GetOptions<Configurations.PostgresOptions>(OptionsSectionName);
         services.AddDbContext<CompanyGearDbContext>(x => x.UseNpgsql(postgresOptions.ConnectionString));

@@ -1,7 +1,6 @@
 using CompanyGear.Application.Commands;
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
-using CompanyGear.Core.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

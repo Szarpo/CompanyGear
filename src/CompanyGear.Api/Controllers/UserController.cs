@@ -2,6 +2,7 @@ using CompanyGear.Application.Commands;
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyGear.Api.Controllers;
@@ -19,7 +20,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateUser(SingUpCommand command)
+    public async Task<ActionResult> CreateUser(SignUpCommand command)
     {
         await _mediator.Send(command);
         return NoContent();
@@ -52,5 +53,21 @@ public class UserController : ControllerBase
         return NoContent();
     }
 
+    [Authorize]
+    [HttpGet("me")]
+    public async Task<ActionResult<UserDto>> Get()
+    {
 
+        if (string.IsNullOrWhiteSpace(User.Identity?.Name))
+        {
+            return NotFound();
+        }
+        
+        var userId = Guid.Parse(User.Identity.Name);
+        var user = await _mediator.Send(new GetUserByIdQuery(userId));
+
+        return user;
+    }
+
+ 
 }

@@ -44,4 +44,6 @@ internal sealed class UserRepository : IUserRepository
         _users.Update(user);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<User> GetByLogin(string login) => await _users.FirstOrDefaultAsync(x => x.Login == login);
 }

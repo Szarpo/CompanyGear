@@ -13,4 +13,6 @@ public interface IUserRepository
      Task DeleteUser(User user);
      Task ChangeRole(User user);
 
+     Task<User> GetByLogin(string login);
+
 }

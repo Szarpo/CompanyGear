@@ -1,10 +1,9 @@
 using System.Reflection;
-using CompanyGear.Application.Security;
-using CompanyGear.Core.Repositories;
+using CompanyGear.Core.Abstractions;
 using CompanyGear.Infrastructure.Auth;
 using CompanyGear.Infrastructure.DAL;
-using CompanyGear.Infrastructure.DAL.Repositories;
 using CompanyGear.Infrastructure.Security;
+using CompanyGear.Infrastructure.Time;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,15 +13,16 @@ public static class Extensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-        services.AddScoped<IGearRepository, GearRepository>();
-        services.AddScoped<IRelationRepository, RelationRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
-        services.AddPostgres(configuration);
-        services.AddSecurity();
-        services.AddAuth(configuration);
+        services.AddHttpContextAccessor();
+
+        services
+            .AddPostgres(configuration)
+            .AddSingleton<IClock, Clock>()
+            .AddSecurity();
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+        services.AddAuth(configuration);
 
         
         return services;
