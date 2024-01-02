@@ -5,25 +5,25 @@ using MediatR;
 
 namespace CompanyGear.Application.Commands.Handlers;
 
-public sealed class CreateRelationEmployeeWithGearCommandHandler : IRequestHandler<CreateRelationEmployeeWithGearCommand>
+public sealed class CreateRelationEmployeeWithDeviceCommandHandler : IRequestHandler<CreateRelationEmployeeWithDeviceCommand>
 {
     private readonly IRelationRepository _relationRepository;
     private readonly IEmployeeRepository _employeeRepository;
 
-    public CreateRelationEmployeeWithGearCommandHandler(IRelationRepository relationRepository, IEmployeeRepository employeeRepository)
+    public CreateRelationEmployeeWithDeviceCommandHandler(IRelationRepository relationRepository, IEmployeeRepository employeeRepository)
     {
         _relationRepository = relationRepository;
         _employeeRepository = employeeRepository;
     }
 
 
-    public async Task Handle(CreateRelationEmployeeWithGearCommand request, CancellationToken cancellationToken)
+    public async Task Handle(CreateRelationEmployeeWithDeviceCommand request, CancellationToken cancellationToken)
     {
 
         var isExist = await _relationRepository.IsExistId(request.GearId);
         if (isExist)
         {
-            throw new InvalidGearIdAssignedException(request.GearId);
+            throw new InvalidDeviceIdAssignedException(request.GearId);
         }
         
         var (employeeId, gearId) = request;

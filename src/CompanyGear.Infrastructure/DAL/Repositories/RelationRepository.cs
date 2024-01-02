@@ -6,10 +6,10 @@ namespace CompanyGear.Infrastructure.DAL.Repositories;
 
 internal sealed class RelationRepository : IRelationRepository
 {
-    private readonly CompanyGearDbContext _dbContext;
+    private readonly CompanyDeviceDbContext _dbContext;
     private readonly DbSet<Relation> _relations;
 
-    public RelationRepository(CompanyGearDbContext dbContext)
+    public RelationRepository(CompanyDeviceDbContext dbContext)
     {
         _dbContext = dbContext;
         _relations = dbContext.Relations;

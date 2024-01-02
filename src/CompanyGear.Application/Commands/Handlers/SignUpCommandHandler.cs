@@ -6,19 +6,19 @@ using MediatR;
 
 namespace CompanyGear.Application.Commands.Handlers;
 
-public class SingUpCommandHandler : IRequestHandler<SingUpCommand>
+public class SignUpCommandHandler : IRequestHandler<SignUpCommand>
 {
 
     private readonly IPasswordManager? _passwordManager;
     private readonly IUserRepository _userRepository;
 
-    public SingUpCommandHandler(IPasswordManager passwordManager, IUserRepository userRepository)
+    public SignUpCommandHandler(IPasswordManager passwordManager, IUserRepository userRepository)
     {
         _passwordManager = passwordManager;
         _userRepository = userRepository;
     }
     
-    public async Task Handle(SingUpCommand request, CancellationToken cancellationToken)
+    public async Task Handle(SignUpCommand request, CancellationToken cancellationToken)
     {
         var (login, fullName, password) = request;
         var loginIsExist = await _userRepository.LoginIsExist(login: login);

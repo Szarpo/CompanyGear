@@ -1,6 +1,6 @@
 namespace CompanyGear.Core.Enums;
 
-public enum TypeOfGearEnum
+public enum TypeOfDeviceEnum
 {
     Laptop,
     Desktop,

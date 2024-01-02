@@ -8,8 +8,8 @@ namespace CompanyGear.Infrastructure.DAL.Handlers;
 
 internal sealed class GetRelationsQueryHandler : IRequestHandler<GetRelationsQuery, IEnumerable<RelationDto>>
 {
-    private readonly CompanyGearDbContext _dbContext;
-    public GetRelationsQueryHandler(CompanyGearDbContext dbContext, IEmployeeRepository employeeRepository) => _dbContext = dbContext;
+    private readonly CompanyDeviceDbContext _dbContext;
+    public GetRelationsQueryHandler(CompanyDeviceDbContext dbContext, IEmployeeRepository employeeRepository) => _dbContext = dbContext;
     
     
     public async Task<IEnumerable<RelationDto>> Handle(GetRelationsQuery request, CancellationToken cancellationToken)
@@ -22,13 +22,13 @@ internal sealed class GetRelationsQueryHandler : IRequestHandler<GetRelationsQue
         {
             var employee = await _dbContext.Employees.Where(x => x.Id == relation.EmployeeId).FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
-            var gear = await _dbContext.Gears.Where(x => x.Id == relation.GearId).FirstOrDefaultAsync(cancellationToken: cancellationToken);
+            var gear = await _dbContext.Devices.Where(x => x.Id == relation.GearId).FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
             var relationDetails = new RelationDto
             {
                 Id = relation.Id,
                 Employee = employee.EmployeeAsDto(),
-                Gear = gear.GearAsDto(),
+                Gear = gear.DeviceAsDto(),
                 RelationStatus = relation.RelationStatus,
             };
             

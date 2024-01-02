@@ -5,12 +5,12 @@ namespace CompanyGear.Core.ValueObjects;
 
 public sealed record TypeOfDevice
 {
-    public TypeOfGearEnum Value { get; }
+    public TypeOfDeviceEnum Value { get; }
 
 
-    public TypeOfDevice(TypeOfGearEnum value)
+    public TypeOfDevice(TypeOfDeviceEnum value)
     {
-        if (!Enum.IsDefined(typeof(TypeOfGearEnum), value))
+        if (!Enum.IsDefined(typeof(TypeOfDeviceEnum), value))
         {
             throw new InvalidTypeException(value.ToString());
         }
@@ -18,5 +18,5 @@ public sealed record TypeOfDevice
     }
 
     public static implicit operator string(TypeOfDevice typeOfDevice) => typeOfDevice.Value.ToString();
-    public static implicit operator TypeOfDevice(int value) => new TypeOfDevice((TypeOfGearEnum)value);
+    public static implicit operator TypeOfDevice(int value) => new TypeOfDevice((TypeOfDeviceEnum)value);
 }

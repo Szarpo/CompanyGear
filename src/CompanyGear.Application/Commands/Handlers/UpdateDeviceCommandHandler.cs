@@ -6,33 +6,33 @@ using MediatR;
 
 namespace CompanyGear.Application.Commands.Handlers;
 
-public class UpdateGearCommandHandler : IRequestHandler<UpdateGearCommand>
+public class UpdateDeviceCommandHandler : IRequestHandler<UpdateDeviceCommand>
 {
-    private readonly IGearRepository _gearRepository;
+    private readonly IDeviceRepository _deviceRepository;
 
-    public UpdateGearCommandHandler(IGearRepository gearRepository)
+    public UpdateDeviceCommandHandler(IDeviceRepository deviceRepository)
     {
-        _gearRepository = gearRepository;
+        _deviceRepository = deviceRepository;
     }
-    public async Task Handle(UpdateGearCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateDeviceCommand request, CancellationToken cancellationToken)
     {
         var (gearId, typeOfDevice, model, serialNumber,uteNumber) = request;
-        var isExist = await _gearRepository.IsExist(gearId);
+        var isExist = await _deviceRepository.IsExist(gearId);
         
         if (!isExist)
         {
             throw new InvalidNotExistIdException(request.GearId);
         }
         
-        var gear = await _gearRepository.GetById(request.GearId);
+        var gear = await _deviceRepository.GetById(request.GearId);
         gear.Update(
-            typeOfDevice: new TypeOfDevice((TypeOfGearEnum)typeOfDevice), 
+            typeOfDevice: new TypeOfDevice((TypeOfDeviceEnum)typeOfDevice), 
             model: new Model(model), 
             serialNumber: new SerialNumber(serialNumber),
             uteNumber: new UteNumber(uteNumber)
             );
 
-        await _gearRepository.Update(gear);
+        await _deviceRepository.Update(gear);
 
     }
 }

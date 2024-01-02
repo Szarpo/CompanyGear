@@ -1,6 +1,6 @@
 namespace CompanyGear.Application.DTO;
 
-public class GearDto
+public class DeviceDto
 {
     public Guid Id { get; set; }
     public string? TypeOfDevice { get; set; }

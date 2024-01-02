@@ -6,10 +6,10 @@ namespace CompanyGear.Infrastructure.DAL.Repositories;
 
 internal sealed class UserRepository : IUserRepository
 {
-    private readonly CompanyGearDbContext _dbContext;
+    private readonly CompanyDeviceDbContext _dbContext;
     private readonly DbSet<User> _users;
 
-    public UserRepository(CompanyGearDbContext dbContext)
+    public UserRepository(CompanyDeviceDbContext dbContext)
     {
         _dbContext = dbContext;
         _users = dbContext.Users;
@@ -44,4 +44,6 @@ internal sealed class UserRepository : IUserRepository
         _users.Update(user);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<User> GetByLogin(string login) => await _users.FirstOrDefaultAsync(x => x.Login == login);
 }

@@ -7,9 +7,9 @@ namespace CompanyGear.Infrastructure.DAL.Handlers;
 
 internal sealed class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, IEnumerable<UserDto>>
 {
-    private readonly CompanyGearDbContext _dbContext;
+    private readonly CompanyDeviceDbContext _dbContext;
 
-    public GetUsersQueryHandler(CompanyGearDbContext dbContext)
+    public GetUsersQueryHandler(CompanyDeviceDbContext dbContext)
     {
         _dbContext = dbContext;
     }

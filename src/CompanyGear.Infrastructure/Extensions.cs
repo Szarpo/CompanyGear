@@ -1,11 +1,12 @@
 using System.Reflection;
-using CompanyGear.Application.Security;
-using CompanyGear.Core.Repositories;
+using CompanyGear.Core.Abstractions;
+using CompanyGear.Infrastructure.Auth;
 using CompanyGear.Infrastructure.DAL;
-using CompanyGear.Infrastructure.DAL.Repositories;
 using CompanyGear.Infrastructure.Security;
+using CompanyGear.Infrastructure.Time;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 
 namespace CompanyGear.Infrastructure;
 
@@ -13,15 +14,30 @@ public static class Extensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-        services.AddScoped<IGearRepository, GearRepository>();
-        services.AddScoped<IRelationRepository, RelationRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
-        services.AddPostgres(configuration);
-        services.AddSecurity();
+
+        services
+            .AddHttpContextAccessor()
+            .AddPostgres(configuration)
+            .AddSingleton<IClock, Clock>()
+            .AddSecurity()
+            .AddAuth(configuration);
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
+        
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen(swagger=>
+
+            {
+                swagger.EnableAnnotations();
+                swagger.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Company Gear",
+                    Version = "v1"
+                });
+            }
+            
+            );
         
         return services;
     }

@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CompanyGear.Infrastructure.DAL;
 
-internal sealed class CompanyGearDbContext : DbContext
+internal sealed class CompanyDeviceDbContext : DbContext
 {
     public DbSet<Employee> Employees { get; set;  }
-    public DbSet<Gear> Gears { get; set; }
+    public DbSet<Device> Devices { get; set; }
     public DbSet<Relation> Relations { get; set; }
     public DbSet<User> Users { get; set; }
 
-    public CompanyGearDbContext(DbContextOptions<CompanyGearDbContext> options) : base(options)
+    public CompanyDeviceDbContext(DbContextOptions<CompanyDeviceDbContext> options) : base(options)
     {
         
     }

@@ -17,7 +17,7 @@ public static class Extensions
 
     };
 
-    public static GearDto GearAsDto(this Gear entity) => new()
+    public static DeviceDto DeviceAsDto(this Device entity) => new()
     {
         Id = entity.Id,
         TypeOfDevice = entity.TypeOfDevice,
@@ -27,13 +27,13 @@ public static class Extensions
         
     };
 
-    public static RelationDto RelationEmployeeWithGearAsDto(this Relation relation, Employee employee, Gear gear)
+    public static RelationDto RelationEmployeeWithDeviceAsDto(this Relation relation, Employee employee, Device device)
     {
         return new RelationDto()
         {
             Id = relation.Id,
             Employee = employee.EmployeeAsDto(),
-            Gear = gear.GearAsDto(),
+            Gear = device.DeviceAsDto(),
             RelationStatus = relation.RelationStatus,
         };
     }

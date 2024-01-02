@@ -8,9 +8,9 @@ namespace CompanyGear.Infrastructure.DAL.Handlers;
 internal sealed class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto>
 {
 
-    private readonly CompanyGearDbContext _dbContext;
+    private readonly CompanyDeviceDbContext _dbContext;
 
-    public GetUserByIdQueryHandler(CompanyGearDbContext dbContext)
+    public GetUserByIdQueryHandler(CompanyDeviceDbContext dbContext)
     {
         _dbContext = dbContext;
     }
