@@ -6,13 +6,13 @@ using MediatR;
 
 namespace CompanyGear.Application.Commands.Handlers;
 
-public class SingUpCommandHandler : IRequestHandler<SignUpCommand>
+public class SignUpCommandHandler : IRequestHandler<SignUpCommand>
 {
 
     private readonly IPasswordManager? _passwordManager;
     private readonly IUserRepository _userRepository;
 
-    public SingUpCommandHandler(IPasswordManager passwordManager, IUserRepository userRepository)
+    public SignUpCommandHandler(IPasswordManager passwordManager, IUserRepository userRepository)
     {
         _passwordManager = passwordManager;
         _userRepository = userRepository;

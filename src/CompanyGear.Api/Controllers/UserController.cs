@@ -4,6 +4,7 @@ using CompanyGear.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace CompanyGear.Api.Controllers;
 
@@ -19,7 +20,8 @@ public class UserController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost]
+    [HttpPost("sign-up")]
+    [SwaggerOperation("Create account")]
     public async Task<ActionResult> CreateUser(SignUpCommand command)
     {
         await _mediator.Send(command);
@@ -27,9 +29,11 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation("Get all account")]
     public async Task<ActionResult<UserDto>> GetAll([FromQuery] GetUsersQuery query) => Ok(await _mediator.Send(query));
 
     [HttpPut]
+    [SwaggerOperation("Change user data")]
     public async Task<ActionResult> UpdateUser([FromBody] UpdateUserCommand command)
     {
         await _mediator.Send(command);
@@ -37,6 +41,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete]
+    [SwaggerOperation("Delete account")]
     public async Task<ActionResult> DeleteUser([FromQuery] DeleteUserCommand command)
     {
         await _mediator.Send(command);
@@ -44,9 +49,11 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("userId")]
+    [SwaggerOperation("Get account by ID")]
     public async Task<ActionResult<UserDto>> GetById([FromQuery] GetUserByIdQuery query) =>  Ok(await _mediator.Send(query));
 
-    [HttpPut("changeRole")]
+    [HttpPut("changeRole")]    
+    [SwaggerOperation("Change the user role")]
     public async Task<ActionResult> ChangeRole([FromBody] ChangeRoleCommand command)
     {
         await _mediator.Send(command);
@@ -55,6 +62,7 @@ public class UserController : ControllerBase
 
     [Authorize]
     [HttpGet("me")]
+    [SwaggerOperation("Download authorized user data")]
     public async Task<ActionResult<UserDto>> Get()
     {
 

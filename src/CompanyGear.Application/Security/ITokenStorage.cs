@@ -6,4 +6,6 @@ public interface ITokenStorage
 {
     void Set(JwtDto jwt);
     JwtDto Get();
+
+    void Remove();
 }

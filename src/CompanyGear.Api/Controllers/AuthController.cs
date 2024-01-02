@@ -3,6 +3,7 @@ using CompanyGear.Application.DTO;
 using CompanyGear.Application.Security;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace CompanyGear.Api.Controllers;
 
@@ -18,6 +19,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("sign-in")]
+    [SwaggerOperation("Logging into the system ")]
     public async Task<ActionResult<JwtDto>> Login([FromBody] SignInCommand command, ITokenStorage tokenStorage)
     {
         await _mediator.Send(command);
@@ -26,9 +28,11 @@ public class AuthController : ControllerBase
     }
 
     [HttpDelete("logout")]
-    public async Task<ActionResult> Logout()
+    [SwaggerOperation("Revoke token")]
+    public async Task<ActionResult> Logout(SignOutCommand command)
     {
-        return NoContent();
+        await _mediator.Send(command);
+        return Ok();
     }
 
 }

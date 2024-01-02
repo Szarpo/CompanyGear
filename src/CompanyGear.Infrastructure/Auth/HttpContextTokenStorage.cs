@@ -1,5 +1,6 @@
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Security;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 
 namespace CompanyGear.Infrastructure.Auth;
@@ -29,5 +30,10 @@ internal sealed class HttpContextTokenStorage : ITokenStorage
         }
 
         return null;
+    }
+
+    public void Remove()
+    {
+         _httpContextAccessor.HttpContext?.Items.Remove(TokenKey);
     }
 }

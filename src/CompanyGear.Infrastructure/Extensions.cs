@@ -6,6 +6,7 @@ using CompanyGear.Infrastructure.Security;
 using CompanyGear.Infrastructure.Time;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 
 namespace CompanyGear.Infrastructure;
 
@@ -23,6 +24,21 @@ public static class Extensions
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
         services.AddAuth(configuration);
+        
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen(swagger=>
+
+            {
+                swagger.EnableAnnotations();
+                swagger.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Company Gear",
+                    Version = "v1"
+                });
+            }
+            
+            );
+
 
         
         return services;

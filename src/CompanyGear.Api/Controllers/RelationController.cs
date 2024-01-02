@@ -3,6 +3,7 @@ using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace CompanyGear.Api.Controllers;
 
@@ -19,6 +20,7 @@ public class RelationController : ControllerBase
     }
     
     [HttpPost] 
+    [SwaggerOperation("Create relation: employee with device")]
     public async Task<ActionResult> AddRelationGearWithEmployee([FromBody] CreateRelationEmployeeWithGearCommand command)
     {
         await _mediator.Send(command);
@@ -26,6 +28,7 @@ public class RelationController : ControllerBase
     }
 
     [HttpPut("archiveRelation")]
+    [SwaggerOperation("Add relation to archive")]
     public async Task<ActionResult> ArchiveRelation([FromBody] ArchiveRelationCommand command)
     {
         await _mediator.Send(command);
@@ -33,12 +36,14 @@ public class RelationController : ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation("Get all relations")]
     public async Task<ActionResult<IEnumerable<RelationDto>>> GetRelations([FromQuery] GetRelationsQuery query)
     {
         return Ok(await _mediator.Send(query));
     }
 
     [HttpDelete]
+    [SwaggerOperation("Delete relation")]
     public async Task<ActionResult> DeleteRelation([FromQuery] DeleteRelationCommand command)
     {
         await _mediator.Send(command);
@@ -46,6 +51,7 @@ public class RelationController : ControllerBase
     }
 
     [HttpGet("relationId")]
+    [SwaggerOperation("Get relation by ID")]
     public async Task<ActionResult<RelationDto>> GetRelationById([FromQuery] GetRelationByIdQuery query) 
         => Ok(await _mediator.Send(query));
 
