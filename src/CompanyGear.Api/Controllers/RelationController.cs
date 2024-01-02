@@ -2,6 +2,7 @@ using CompanyGear.Application.Commands;
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -9,6 +10,7 @@ namespace CompanyGear.Api.Controllers;
 
 [ApiController]
 [Route("relation")]
+[Authorize(policy: "is-admin")]
 public class RelationController : ControllerBase
 {
 

@@ -10,6 +10,7 @@ namespace CompanyGear.Api.Controllers;
 
 [ApiController]
 [Route("device")]
+[Authorize(policy: "is-admin")]
 public class   DeviceController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -22,7 +23,6 @@ public class   DeviceController : ControllerBase
 
     [HttpPost]
     [SwaggerOperation("Add new device")]
-    [Authorize(policy: "is-admin")]
     public async Task<ActionResult> Create([FromBody] CreateDeviceCommand command)
     {
       
@@ -32,7 +32,6 @@ public class   DeviceController : ControllerBase
 
     [HttpGet]
     [SwaggerOperation("Get all devices")]
-    [Authorize(policy: "is-admin")]
     public  async Task<ActionResult<IEnumerable<DeviceDto>>> GetDevices([FromQuery] GetDevicesQuery query)
     {
         return Ok(await _mediator.Send(query));

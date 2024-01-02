@@ -54,6 +54,7 @@ public class UserController : ControllerBase
 
     [HttpPut("changeRole")]    
     [SwaggerOperation("Change the user role")]
+    [Authorize(policy: "is-admin")]
     public async Task<ActionResult> ChangeRole([FromBody] ChangeRoleCommand command)
     {
         await _mediator.Send(command);
