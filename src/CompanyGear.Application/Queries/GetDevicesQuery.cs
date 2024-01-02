@@ -3,4 +3,4 @@ using MediatR;
 
 namespace CompanyGear.Application.Queries;
 
-public record GetGearByIdQuery(Guid GearId) : IRequest<GearDto>;
+public record GetDevicesQuery : IRequest<IEnumerable<DeviceDto>>;

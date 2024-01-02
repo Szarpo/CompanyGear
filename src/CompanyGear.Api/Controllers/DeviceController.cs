@@ -2,18 +2,19 @@ using CompanyGear.Application.Commands;
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace CompanyGear.Api.Controllers;
 
 [ApiController]
-[Route("gear")]
-public class   GearController : ControllerBase
+[Route("device")]
+public class   DeviceController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public GearController(IMediator mediator)
+    public DeviceController(IMediator mediator)
     {
         _mediator = mediator;
     }
@@ -21,8 +22,8 @@ public class   GearController : ControllerBase
 
     [HttpPost]
     [SwaggerOperation("Add new device")]
-
-    public async Task<ActionResult> Create([FromBody] CreateGearCommand command)
+    [Authorize(policy: "is-admin")]
+    public async Task<ActionResult> Create([FromBody] CreateDeviceCommand command)
     {
       
         await _mediator.Send(command);
@@ -31,8 +32,8 @@ public class   GearController : ControllerBase
 
     [HttpGet]
     [SwaggerOperation("Get all devices")]
-
-    public  async Task<ActionResult<IEnumerable<GearDto>>> GetGears([FromQuery] GetGearsQuery query)
+    [Authorize(policy: "is-admin")]
+    public  async Task<ActionResult<IEnumerable<DeviceDto>>> GetDevices([FromQuery] GetDevicesQuery query)
     {
         return Ok(await _mediator.Send(query));
     }
@@ -40,7 +41,7 @@ public class   GearController : ControllerBase
     [HttpPut]
     [SwaggerOperation("Update device data")]
 
-    public async Task<ActionResult> UpdateGear([FromBody] UpdateGearCommand command)
+    public async Task<ActionResult> UpdateDevice([FromBody] UpdateDeviceCommand command)
     {
         await _mediator.Send(command);
         return NoContent();
@@ -49,16 +50,16 @@ public class   GearController : ControllerBase
     [HttpDelete]
     [SwaggerOperation("Delete device")]
 
-    public async Task<ActionResult> DeleteGear([FromQuery] DeleteGearCommand command)
+    public async Task<ActionResult> DeleteDevice([FromQuery] DeleteDeviceCommand command)
     {
         await _mediator.Send(command);
         return NoContent();
     }
 
-    [HttpGet("gearId")]
+    [HttpGet("deviceId")]
     [SwaggerOperation("Get device by ID")]
 
-    public async Task<ActionResult<GearDto>> GetById([FromQuery] GetGearByIdQuery query)
+    public async Task<ActionResult<DeviceDto>> GetById([FromQuery] GetDeviceByIdQuery query)
         => Ok(await _mediator.Send(query));
 
 }

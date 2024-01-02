@@ -7,10 +7,10 @@ namespace CompanyGear.Infrastructure.DAL.Repositories;
 internal sealed class EmployeeRepository : IEmployeeRepository
 {
 
-    private readonly CompanyGearDbContext _dbContext;
+    private readonly CompanyDeviceDbContext _dbContext;
     private readonly DbSet<Employee> _employees;
 
-    public EmployeeRepository(CompanyGearDbContext dbContext)
+    public EmployeeRepository(CompanyDeviceDbContext dbContext)
     {
         _dbContext = dbContext;
         _employees = _dbContext.Employees;

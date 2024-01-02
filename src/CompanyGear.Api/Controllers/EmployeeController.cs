@@ -2,6 +2,7 @@ using CompanyGear.Application.Commands;
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -10,6 +11,7 @@ namespace CompanyGear.Api.Controllers;
 
 [ApiController]
 [Route("employee")]
+[Authorize(policy: "is-admin")]
 public class EmployeeController : ControllerBase
 {
     private readonly IMediator _mediator;

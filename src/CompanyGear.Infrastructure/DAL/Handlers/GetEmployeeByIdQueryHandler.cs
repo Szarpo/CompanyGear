@@ -10,10 +10,10 @@ namespace CompanyGear.Infrastructure.DAL.Handlers;
 internal sealed class GetEmployeeByIdQueryHandler : IRequestHandler<GetEmployeeByIdQuery, EmployeeDto>
 {
 
-    private readonly CompanyGearDbContext _dbContext;
+    private readonly CompanyDeviceDbContext _dbContext;
     private readonly IEmployeeRepository _employeeRepository;
 
-    public GetEmployeeByIdQueryHandler(CompanyGearDbContext dbContext, IEmployeeRepository employeeRepository)
+    public GetEmployeeByIdQueryHandler(CompanyDeviceDbContext dbContext, IEmployeeRepository employeeRepository)
     {
         _dbContext = dbContext;
         _employeeRepository = employeeRepository;

@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CompanyGear.Infrastructure.DAL.Configurations;
 
-public class GearConfiguration : IEntityTypeConfiguration<Gear>
+public class DeviceConfiguration : IEntityTypeConfiguration<Device>
 {
-    public void Configure(EntityTypeBuilder<Gear> builder)
+    public void Configure(EntityTypeBuilder<Device> builder)
     {
         builder.HasKey(x => x.Id);
         builder.Property(x => x.TypeOfDevice).HasConversion(x => x.Value, x => new TypeOfDevice(x));

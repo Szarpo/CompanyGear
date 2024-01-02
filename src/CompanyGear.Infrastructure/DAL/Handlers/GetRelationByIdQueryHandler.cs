@@ -10,10 +10,10 @@ namespace CompanyGear.Infrastructure.DAL.Handlers;
 internal sealed class GetRelationByIdQueryHandler : IRequestHandler<GetRelationByIdQuery, RelationDto>
 {
 
-    private readonly CompanyGearDbContext _dbContext;
+    private readonly CompanyDeviceDbContext _dbContext;
     private readonly IRelationRepository _relationRepository;
 
-    public GetRelationByIdQueryHandler(CompanyGearDbContext dbContext, IRelationRepository relationRepository)
+    public GetRelationByIdQueryHandler(CompanyDeviceDbContext dbContext, IRelationRepository relationRepository)
     {
         _dbContext = dbContext;
         _relationRepository = relationRepository;
@@ -32,8 +32,8 @@ internal sealed class GetRelationByIdQueryHandler : IRequestHandler<GetRelationB
 
         var employee = await _dbContext.Employees.AsNoTracking().FirstOrDefaultAsync(x => x.Id == relation.EmployeeId, cancellationToken: cancellationToken);
 
-        var gear = await _dbContext.Gears.AsNoTracking().FirstOrDefaultAsync(x => x.Id == relation.GearId, cancellationToken: cancellationToken);
+        var gear = await _dbContext.Devices.AsNoTracking().FirstOrDefaultAsync(x => x.Id == relation.GearId, cancellationToken: cancellationToken);
 
-        return relation?.RelationEmployeeWithGearAsDto(employee: employee, gear: gear);
+        return relation?.RelationEmployeeWithDeviceAsDto(employee: employee, device: gear);
     }
 }

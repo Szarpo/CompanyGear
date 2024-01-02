@@ -1,9 +1,8 @@
-using CompanyGear.Core.Enums;
 using CompanyGear.Core.ValueObjects;
 
 namespace CompanyGear.Core.Entities;
 
-public class Gear
+public class Device
 {
     public Guid Id { get; }
     public TypeOfDevice TypeOfDevice { get; private set; }
@@ -11,7 +10,7 @@ public class Gear
     public SerialNumber SerialNumber { get; private set;}
     public UteNumber UteNumber { get; private set;}
 
-    private Gear(Guid id, TypeOfDevice typeOfDevice, string model, string serialNumber, string uteNumber)
+    private Device(Guid id, TypeOfDevice typeOfDevice, string model, string serialNumber, string uteNumber)
     {
         Id = id;
         TypeOfDevice = typeOfDevice;
@@ -20,11 +19,11 @@ public class Gear
         UteNumber = uteNumber;
     }
 
-    public Gear() {}
+    public Device() {}
 
-    public static Gear Create(TypeOfDevice typeOfDevice, Model model, SerialNumber serialNumber, UteNumber uteNumber)
+    public static Device Create(TypeOfDevice typeOfDevice, Model model, SerialNumber serialNumber, UteNumber uteNumber)
     {
-        return new Gear(Guid.NewGuid(), typeOfDevice, model, serialNumber, uteNumber);
+        return new Device(Guid.NewGuid(), typeOfDevice, model, serialNumber, uteNumber);
     }
 
     public void Update(TypeOfDevice typeOfDevice, Model model, SerialNumber serialNumber, UteNumber uteNumber)

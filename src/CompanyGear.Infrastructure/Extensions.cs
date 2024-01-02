@@ -14,16 +14,16 @@ public static class Extensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddHttpContextAccessor();
 
         services
+            .AddHttpContextAccessor()
             .AddPostgres(configuration)
             .AddSingleton<IClock, Clock>()
-            .AddSecurity();
+            .AddSecurity()
+            .AddAuth(configuration);
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
-        services.AddAuth(configuration);
         
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(swagger=>
@@ -38,8 +38,6 @@ public static class Extensions
             }
             
             );
-
-
         
         return services;
     }
