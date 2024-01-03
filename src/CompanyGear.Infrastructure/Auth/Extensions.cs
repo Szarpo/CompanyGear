@@ -40,6 +40,7 @@ public static class Extensions
             auth.AddPolicy("is-admin", policy =>
                 policy.RequireRole("Admin")
             );
+          
         });
         
         return services;

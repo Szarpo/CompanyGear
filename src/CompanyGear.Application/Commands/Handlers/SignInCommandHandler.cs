@@ -30,7 +30,7 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand>
             throw new InvalidCredentialException();
         }
 
-        if (!_passwordManager.ConfirmPassword(request.Password, user!.Password))
+        if (!_passwordManager.ValidatePassword(request.Password, user!.Password))
         {
             throw new InvalidCredentialException();
         }
