@@ -46,5 +46,6 @@ internal sealed class Authenticator : IAuthenticator
         {
             AccessToken = token
         };
+        
     }
 }

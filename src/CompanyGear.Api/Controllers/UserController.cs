@@ -63,7 +63,7 @@ public class UserController : ControllerBase
 
     [Authorize]
     [HttpGet("me")]
-    [SwaggerOperation("Download authorized user data")]
+    [SwaggerOperation("Get authorized user data")]
     public async Task<ActionResult<UserDto>> Get()
     {
 
