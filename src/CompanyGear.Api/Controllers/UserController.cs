@@ -20,6 +20,7 @@ public class UserController : ControllerBase
         _mediator = mediator;
     }
 
+    [AllowAnonymous]
     [HttpPost("sign-up")]
     [SwaggerOperation("Create account")]
     public async Task<ActionResult> CreateUser(SignUpCommand command)
@@ -28,37 +29,60 @@ public class UserController : ControllerBase
         return NoContent();
     }
 
+    [Authorize(policy: "is-admin")]
     [HttpGet]
     [SwaggerOperation("Get all account")]
-    [Authorize]
     public async Task<ActionResult<UserDto>> GetAll([FromQuery] GetUsersQuery query) => Ok(await _mediator.Send(query));
 
+    [Authorize]
     [HttpPut]
     [SwaggerOperation("Change user data")]
-    [Authorize]
     public async Task<ActionResult> UpdateUser([FromBody] UpdateUserCommand command)
     {
+        if (string.IsNullOrWhiteSpace(User.Identity!.Name))
+        {
+            return NoContent();
+        }
+
+        var userId = Guid.Parse(User.Identity.Name);
+
+        if (userId != command.UserId)
+        {
+            return Forbid();
+        }
         await _mediator.Send(command);
         return NoContent();
     }
-
+    
+    [Authorize]
     [HttpDelete]
     [SwaggerOperation("Delete account")]
-    [Authorize]
     public async Task<ActionResult> DeleteUser([FromQuery] DeleteUserCommand command)
     {
+        if (string.IsNullOrWhiteSpace(User.Identity!.Name))
+        {
+            return NoContent();
+        }
+
+        var userId = Guid.Parse(User.Identity.Name);
+
+        if (userId != command.UserId)
+        {
+            return Forbid();
+        }
+        
         await _mediator.Send(command);
         return NoContent();
     }
-
+    
+    [Authorize(policy: "is-admin")]
     [HttpGet("userId")]
     [SwaggerOperation("Get account by ID")]
-    [Authorize]
     public async Task<ActionResult<UserDto>> GetById([FromQuery] GetUserByIdQuery query) =>  Ok(await _mediator.Send(query));
 
+    [Authorize(policy: "is-admin")]
     [HttpPut("changeRole")]    
     [SwaggerOperation("Change the user role")]
-    [Authorize(policy: "is-admin")]
     public async Task<ActionResult> ChangeRole([FromBody] ChangeRoleCommand command)
     {
         await _mediator.Send(command);
