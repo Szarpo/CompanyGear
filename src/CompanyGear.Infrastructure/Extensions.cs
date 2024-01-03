@@ -27,7 +27,6 @@ public static class Extensions
         
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(swagger=>
-
             {
                 swagger.EnableAnnotations();
                 swagger.SwaggerDoc("v1", new OpenApiInfo
@@ -35,6 +34,29 @@ public static class Extensions
                     Title = "Company Gear",
                     Version = "v1"
                 });
+                swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT"
+                    
+                });
+                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme {
+                            Reference = new OpenApiReference {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                }
+                );
             }
             
             );

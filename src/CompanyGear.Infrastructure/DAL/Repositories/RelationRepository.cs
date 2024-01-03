@@ -15,7 +15,7 @@ internal sealed class RelationRepository : IRelationRepository
         _relations = dbContext.Relations;
     }
 
-    public async Task CreateRelationEmployeeToGear(Relation relation)
+    public async Task CreateRelationEmployeeWithDevice(Relation relation)
     {
         await _relations.AddAsync(relation);
         await _dbContext.SaveChangesAsync();
@@ -34,5 +34,5 @@ internal sealed class RelationRepository : IRelationRepository
     }
 
     public async Task<Relation> GetById(Guid id) => await _relations.FirstOrDefaultAsync(x => x.Id == id);
-    public async Task<bool> IsExistId(Guid relationId) => await _relations.AnyAsync(x => x.GearId == relationId);
+    public async Task<bool> IsExistId(Guid relationId) => await _relations.AnyAsync(x => x.DeviceId == relationId);
 }

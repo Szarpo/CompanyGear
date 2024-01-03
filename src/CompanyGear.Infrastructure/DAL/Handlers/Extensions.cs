@@ -33,7 +33,7 @@ public static class Extensions
         {
             Id = relation.Id,
             Employee = employee.EmployeeAsDto(),
-            Gear = device.DeviceAsDto(),
+            Device = device.DeviceAsDto(),
             RelationStatus = relation.RelationStatus,
         };
     }

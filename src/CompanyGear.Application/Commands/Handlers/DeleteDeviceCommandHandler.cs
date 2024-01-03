@@ -15,7 +15,7 @@ public class DeleteDeviceCommandHandler : IRequestHandler<DeleteDeviceCommand>
 
     public async Task Handle(DeleteDeviceCommand request, CancellationToken cancellationToken)
     {
-        var gearToRemove = await _deviceRepository.GetById(request.GearId);
+        var gearToRemove = await _deviceRepository.GetById(request.DeviceId);
         await _deviceRepository.Delete(gearToRemove);
     }
 }

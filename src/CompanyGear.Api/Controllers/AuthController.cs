@@ -2,6 +2,7 @@ using CompanyGear.Application.Commands;
 using CompanyGear.Application.DTO;
 using CompanyGear.Application.Security;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -18,6 +19,7 @@ public class AuthController : ControllerBase
         _mediator = mediator;
     }
 
+    [AllowAnonymous]
     [HttpPost("sign-in")]
     [SwaggerOperation("Logging into the system")]
     public async Task<ActionResult<JwtDto>> Login([FromBody] SignInCommand command, ITokenStorage tokenStorage)

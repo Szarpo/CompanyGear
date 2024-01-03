@@ -6,14 +6,14 @@ public class Relation
 {
     public Guid Id { get; }
     public Guid EmployeeId { get; set; }
-    public Guid GearId { get; set; }
+    public Guid DeviceId { get; set; }
     public RelationStatus RelationStatus { get; set; }
 
-    private Relation(Guid id, Guid employeeId, Guid gearId, RelationStatus relationStatus)
+    private Relation(Guid id, Guid employeeId, Guid deviceId, RelationStatus relationStatus)
     {
         Id = id;
         EmployeeId = employeeId;
-        GearId = gearId;
+        DeviceId = deviceId;
         RelationStatus = relationStatus;
     }
     
@@ -21,7 +21,7 @@ public class Relation
 
     public static Relation CreateRelation(Guid employeeId, Guid gearId)
     {
-        return new Relation(id: new Guid(), employeeId: employeeId, gearId: gearId, relationStatus: new RelationStatus(0));
+        return new Relation(id: new Guid(), employeeId: employeeId, deviceId: gearId, relationStatus: new RelationStatus(0));
     }
 
     public void ArchiveRelation(RelationStatus relationStatus)

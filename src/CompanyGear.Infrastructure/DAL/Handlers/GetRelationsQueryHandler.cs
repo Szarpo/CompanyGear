@@ -22,13 +22,13 @@ internal sealed class GetRelationsQueryHandler : IRequestHandler<GetRelationsQue
         {
             var employee = await _dbContext.Employees.Where(x => x.Id == relation.EmployeeId).FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
-            var gear = await _dbContext.Devices.Where(x => x.Id == relation.GearId).FirstOrDefaultAsync(cancellationToken: cancellationToken);
+            var gear = await _dbContext.Devices.Where(x => x.Id == relation.DeviceId).FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
             var relationDetails = new RelationDto
             {
                 Id = relation.Id,
                 Employee = employee.EmployeeAsDto(),
-                Gear = gear.DeviceAsDto(),
+                Device = gear.DeviceAsDto(),
                 RelationStatus = relation.RelationStatus,
             };
             
