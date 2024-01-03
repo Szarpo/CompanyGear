@@ -23,7 +23,7 @@ public class RelationController : ControllerBase
     
     [HttpPost] 
     [SwaggerOperation("Create relation: employee with device")]
-    public async Task<ActionResult> AddRelationGearWithEmployee([FromBody] CreateRelationEmployeeWithDeviceCommand command)
+    public async Task<ActionResult> AddRelationDeviceWithEmployee([FromBody] CreateRelationEmployeeWithDeviceCommand command)
     {
         await _mediator.Send(command);
         return NoContent();

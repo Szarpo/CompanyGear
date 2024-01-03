@@ -28,6 +28,6 @@ public sealed class CreateRelationEmployeeWithDeviceCommandHandler : IRequestHan
         
         var (employeeId, gearId) = request;
         var newRelation = Relation.CreateRelation(employeeId: request.EmployeeId, gearId: request.DeviceId);
-        await _relationRepository.CreateRelationEmployeeToGear(newRelation);
+        await _relationRepository.CreateRelationEmployeeWithDevice(newRelation);
     }
 }

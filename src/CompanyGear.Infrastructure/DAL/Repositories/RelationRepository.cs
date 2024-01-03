@@ -15,7 +15,7 @@ internal sealed class RelationRepository : IRelationRepository
         _relations = dbContext.Relations;
     }
 
-    public async Task CreateRelationEmployeeToGear(Relation relation)
+    public async Task CreateRelationEmployeeWithDevice(Relation relation)
     {
         await _relations.AddAsync(relation);
         await _dbContext.SaveChangesAsync();
