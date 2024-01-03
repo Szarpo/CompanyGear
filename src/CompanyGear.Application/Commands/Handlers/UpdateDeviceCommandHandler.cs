@@ -21,10 +21,10 @@ public class UpdateDeviceCommandHandler : IRequestHandler<UpdateDeviceCommand>
         
         if (!isExist)
         {
-            throw new InvalidNotExistIdException(request.GearId);
+            throw new InvalidNotExistIdException(request.DeviceId);
         }
         
-        var gear = await _deviceRepository.GetById(request.GearId);
+        var gear = await _deviceRepository.GetById(request.DeviceId);
         gear.Update(
             typeOfDevice: new TypeOfDevice((TypeOfDeviceEnum)typeOfDevice), 
             model: new Model(model), 

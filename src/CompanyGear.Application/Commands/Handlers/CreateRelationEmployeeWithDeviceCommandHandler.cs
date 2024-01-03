@@ -20,14 +20,14 @@ public sealed class CreateRelationEmployeeWithDeviceCommandHandler : IRequestHan
     public async Task Handle(CreateRelationEmployeeWithDeviceCommand request, CancellationToken cancellationToken)
     {
 
-        var isExist = await _relationRepository.IsExistId(request.GearId);
+        var isExist = await _relationRepository.IsExistId(request.DeviceId);
         if (isExist)
         {
-            throw new InvalidDeviceIdAssignedException(request.GearId);
+            throw new InvalidDeviceIdAssignedException(request.DeviceId);
         }
         
         var (employeeId, gearId) = request;
-        var newRelation = Relation.CreateRelation(employeeId: request.EmployeeId, gearId: request.GearId);
+        var newRelation = Relation.CreateRelation(employeeId: request.EmployeeId, gearId: request.DeviceId);
         await _relationRepository.CreateRelationEmployeeToGear(newRelation);
     }
 }

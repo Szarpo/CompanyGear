@@ -32,7 +32,7 @@ internal sealed class GetRelationByIdQueryHandler : IRequestHandler<GetRelationB
 
         var employee = await _dbContext.Employees.AsNoTracking().FirstOrDefaultAsync(x => x.Id == relation.EmployeeId, cancellationToken: cancellationToken);
 
-        var gear = await _dbContext.Devices.AsNoTracking().FirstOrDefaultAsync(x => x.Id == relation.GearId, cancellationToken: cancellationToken);
+        var gear = await _dbContext.Devices.AsNoTracking().FirstOrDefaultAsync(x => x.Id == relation.DeviceId, cancellationToken: cancellationToken);
 
         return relation?.RelationEmployeeWithDeviceAsDto(employee: employee, device: gear);
     }

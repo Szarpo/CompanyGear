@@ -11,7 +11,7 @@ public class RelationConfiguration : IEntityTypeConfiguration<Relation>
     {
         builder.HasKey(x => x.Id);
         builder.Property(x => x.EmployeeId);
-        builder.Property(x => x.GearId);
+        builder.Property(x => x.DeviceId);
         builder.Property(x => x.RelationStatus).HasConversion(x => x.Value, x => new RelationStatus(x));
     }
 }

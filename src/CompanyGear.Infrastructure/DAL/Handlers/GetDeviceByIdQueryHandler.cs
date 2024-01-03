@@ -20,12 +20,12 @@ internal sealed class GetDeviceByIdQueryHandler : IRequestHandler<GetDeviceByIdQ
     
     public async Task<DeviceDto> Handle(GetDeviceByIdQuery request, CancellationToken cancellationToken)
     {
-        var isExist =await  _deviceRepository.IsExist(request.GearId);
+        var isExist =await  _deviceRepository.IsExist(request.DeviceId);
         if (!isExist)
         {
-            throw new InvalidNotExistIdException(id: request.GearId);
+            throw new InvalidNotExistIdException(id: request.DeviceId);
         }
-        var gear = await _dbContext.Devices.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.GearId, cancellationToken: cancellationToken);
+        var gear = await _dbContext.Devices.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.DeviceId, cancellationToken: cancellationToken);
 
         return gear.DeviceAsDto();
     }

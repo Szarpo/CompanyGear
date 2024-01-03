@@ -34,5 +34,5 @@ internal sealed class RelationRepository : IRelationRepository
     }
 
     public async Task<Relation> GetById(Guid id) => await _relations.FirstOrDefaultAsync(x => x.Id == id);
-    public async Task<bool> IsExistId(Guid relationId) => await _relations.AnyAsync(x => x.GearId == relationId);
+    public async Task<bool> IsExistId(Guid relationId) => await _relations.AnyAsync(x => x.DeviceId == relationId);
 }
