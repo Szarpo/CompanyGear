@@ -21,7 +21,7 @@ public class AuthController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("sign-in")]
-    [SwaggerOperation("Logging into the system")]
+    [SwaggerOperation("Logging into the application")]
     public async Task<ActionResult<JwtDto>> Login([FromBody] SignInCommand command, ITokenStorage tokenStorage)
     {
         await _mediator.Send(command);
