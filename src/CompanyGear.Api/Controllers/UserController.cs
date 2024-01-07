@@ -57,9 +57,7 @@ public class UserController : ControllerBase
         {
             return NoContent();
         }
-
-        var userId = Guid.Parse(User.Identity.Name);
-
+        
         await _mediator.Send(command);
         return NoContent();
     }
