@@ -2,6 +2,7 @@ using System.Security.Authentication;
 using CompanyGear.Application.Security;
 using CompanyGear.Core.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace CompanyGear.Application.Commands.Handlers;
 
@@ -24,7 +25,7 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand>
     public async Task Handle(SignInCommand request, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByLogin(request.Login);
-
+        
         if (user is null)
         {
             throw new InvalidCredentialException();

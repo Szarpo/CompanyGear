@@ -43,13 +43,7 @@ public class UserController : ControllerBase
         {
             return NoContent();
         }
-
-        var userId = Guid.Parse(User.Identity.Name);
-
-        if (userId != command.UserId)
-        {
-            return Forbid();
-        }
+        
         await _mediator.Send(command);
         return NoContent();
     }
@@ -66,11 +60,6 @@ public class UserController : ControllerBase
 
         var userId = Guid.Parse(User.Identity.Name);
 
-        if (userId != command.UserId)
-        {
-            return Forbid();
-        }
-        
         await _mediator.Send(command);
         return NoContent();
     }
